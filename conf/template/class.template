@@ -1,0 +1,26 @@
+# encoding: utf-8
+"""
+$modlc - class $mod
+
+Usage:
+	
+
+@date: $date
+@author: Vladimir Roncevic
+@contact: <elektron.ronca@gmail.com>
+@copyright: $year Free software to use and distributed it.
+@license: GNU General Public License (GPL)
+@deffield: updated: Updated
+"""
+
+class $mod:
+	"""
+	Define class $mod with atribute(s) and method(s).
+	
+	It defines:
+		attribute:
+			
+		method:
+			
+	"""
+
