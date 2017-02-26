@@ -24,7 +24,7 @@ from os import getcwd
 from string import Template
 from module.module_selector import ModuleSelector
 
-class WriteTemplate:
+class WriteTemplate(object):
 	"""
 	Define class WriteTemplate with atribute(s) and method(s).
 	Write a template content with parameters to a file.
@@ -32,14 +32,15 @@ class WriteTemplate:
 		attribute:
 			None
 		method:
-			__init__ - create and initial instance
-			write - write a template content with parameters to a file
+			__init__ - Create and initial instance
+			write - Write a template content with parameters to a file
 	"""
 
 	def __init__(self):
 		"""
 		@summary: Basic constructor
 		"""
+		pass
 
 	def write(self, setup_content, module_name, module):
 		"""

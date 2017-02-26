@@ -20,16 +20,16 @@ Usage:
 @deffield: updated: Updated
 """
 
-class ModuleSelector:
+class ModuleSelector(object):
 	"""
 	Define class ModuleSelector with atribute(s) and method(s).
 	Selecting python template module for generating process.
 	It defines:
 		attribute:
-			__EXT - extension python file
-			__MODULES - list of options
+			__EXT - Extension python file
+			__MODULES - List of options
 		method:
-			choose_module - selecting type of module for generating process
+			choose_module - Selecting type of module for generating process
 	"""
 
 	__EXT = ".py"
@@ -46,7 +46,7 @@ class ModuleSelector:
 	def choose_module(cls):
 		"""
 		@summary: Selecting type of module for generating process
-		@return: range (1, 4)
+		@return: Range (1, 4)
 		"""
 		for key in sorted(ModuleSelector.__MODULES):
 			print("{0}".format(key + " " + ModuleSelector.__MODULES[key]))
@@ -62,9 +62,9 @@ class ModuleSelector:
 	def format_name(cls, module_name, module):
 		"""
 		@summary: Format file name by module name and module type
-		@param module_name: Module name (translate to lower case) 
-		@param module: Type of module (empty/class/main/settings/options) 
-		@return: file name with extension
+		@param module_name: Module name (translate to lower case)
+		@param module: Type of module (empty/class/main/settings/options)
+		@return: File name with extension
 		"""
 		file_name = module_name.lower()
 		if module == 0 or module == 2:

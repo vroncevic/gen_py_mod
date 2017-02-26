@@ -19,15 +19,15 @@ Usage:
 from settings import Settings
 from cli_options import CLI
 
-class GenPyModule:
+class GenPyModule(object):
 	"""
 	Define class GenPyModule with atribute(s) and method(s).
 	Load a settings, create a CL interface and run operation.
 	It defines:
 		attribute:
-			__app_cli - command line interface parser
+			__app_cli - Command line interface parser
 		method:
-			__init__ - create and initial instance
+			__init__ - Create and initial instance
 			run - Run tool
 	"""
 

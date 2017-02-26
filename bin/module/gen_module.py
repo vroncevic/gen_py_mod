@@ -30,8 +30,8 @@ class GenModule(ReadTemplate, WriteTemplate):
 		attribute:
 			None
 		method:
-			__init__ - create and initial instance
-			gen_module - generate file python module
+			__init__ - Create and initial instance
+			gen_module - Generate file python module
 			
 	"""
 
@@ -50,8 +50,8 @@ class GenModule(ReadTemplate, WriteTemplate):
 		"""
 		status = False
 		module = ModuleSelector.choose_module()
-		content = ReadTemplate.read(self, module)
+		content = self.read( module)
 		if content != None:
-			status = WriteTemplate.write(self, content, module_name, module)
+			status = self.write(content, module_name, module)
 		return status
 
