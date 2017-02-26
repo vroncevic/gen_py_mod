@@ -1,0 +1,43 @@
+# encoding: utf-8
+"""
+$modlc - class $mod
+
+Usage:
+	
+
+@date: $date
+@author: Vladimir Roncevic
+@contact: <elektron.ronca@gmail.com>
+@copyright: $year Free software to use and distributed it.
+@license: GNU General Public License (GPL)
+@deffield: updated: Updated
+"""
+from abc import ABCMeta, abstractmethod
+
+class $mod(object):
+	"""
+	Define class $mod with atribute(s) and method(s).
+	Abstract class $mod.
+	It defines:
+		attribute:
+			None 
+		method:
+			__init__ - Initial constructor
+			abstract_method - Abstract method (implementation in subclass)
+	"""
+
+	__metaclass__ = ABCMeta
+
+	def __init__(self):
+		"""
+		@summary: Basic costructor
+		"""
+		pass
+
+	@abstractmethod
+	def abstract_method(self):
+		"""
+		@summary: 
+		"""
+		pass
+

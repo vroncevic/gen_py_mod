@@ -41,7 +41,9 @@ class ReadTemplate(object):
 		"2" : "main.template",
 		"3" : "class.template",
 		"4" : "settings.template",
-		"5" : "options.template"
+		"5" : "options.template",
+		"6" : "abstract_base_class.template",
+		"7" : "abstract_google_class.template"
 	}
 
 	def __init__(self):

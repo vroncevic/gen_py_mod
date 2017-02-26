@@ -39,7 +39,9 @@ class ModuleSelector(object):
 		"2" : "Main module",
 		"3" : "Class module",
 		"4" : "Settings module",
-		"5" : "Options module"
+		"5" : "Options module",
+		"6" : "Abstract base module",
+		"7" : "Abstract Google base module"
 	}
 
 	@classmethod

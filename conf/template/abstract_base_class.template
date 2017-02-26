@@ -13,14 +13,20 @@ Usage:
 @deffield: updated: Updated
 """
 
-class ${mod}(object):
+class $mod(object):
 	"""
 	Define class $mod with atribute(s) and method(s).
-	
+	Abstract class $mod.
 	It defines:
 		attribute:
-			
+			None
 		method:
-			
+			abstract_method - abstract method
 	"""
+
+	def abstract_method(self):
+		"""
+		@summary: Subclass must implement this method
+		"""
+		raise NotImplementedError("Not implemented")
 
