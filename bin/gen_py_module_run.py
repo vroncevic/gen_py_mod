@@ -16,5 +16,5 @@ from gen_py_module import GenPyModule
 if __name__ == '__main__':
 
 	tool = GenPyModule()
-	tool.run()
+	tool.process()
 

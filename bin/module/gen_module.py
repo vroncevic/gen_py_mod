@@ -3,7 +3,7 @@
 module.gen_module - class GenModule
 
 Usage:
-	from setup.gen_setup import GenModule
+	from module.gen_setup import GenModule
 
 	generator = GenModule()
 	status = generator.gen_module("configuration")
@@ -50,7 +50,7 @@ class GenModule(ReadTemplate, WriteTemplate):
 		"""
 		status = False
 		module = ModuleSelector.choose_module()
-		content = self.read( module)
+		content = self.read(module)
 		if content != None:
 			status = self.write(content, module_name, module)
 		return status
