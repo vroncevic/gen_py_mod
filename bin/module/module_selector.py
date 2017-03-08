@@ -41,7 +41,8 @@ class ModuleSelector(object):
 		"4" : "Settings module",
 		"5" : "Options module",
 		"6" : "Abstract base module",
-		"7" : "Abstract Google base module"
+		"7" : "Abstract Google base module",
+		"8" : "Cancel"
 	}
 
 	@classmethod
@@ -50,15 +51,16 @@ class ModuleSelector(object):
 		@summary: Selecting type of module for generating process
 		@return: Range (1, 4)
 		"""
+		print("\n Module option list:")
 		for key in sorted(ModuleSelector.__MODULES):
-			print("{0}".format(key + " " + ModuleSelector.__MODULES[key]))
+			print("  {0}".format(key + " " + ModuleSelector.__MODULES[key]))
 		while True:
-			module = input("Select module: ")
-			if module not in ModuleSelector.__MODULES.keys():
-				print("Not an appropriate choice.")
+			module = input(" Select module: ")
+			if str(module) not in ModuleSelector.__MODULES.keys():
+				print(" Not an appropriate choice.")
 			else:
 				break
-		return module
+		return str(module)
 
 	@classmethod
 	def format_name(cls, module_name, module):
@@ -69,13 +71,13 @@ class ModuleSelector(object):
 		@return: File name with extension
 		"""
 		file_name = module_name.lower()
-		if module == 0 or module == 2:
+		if module == "0" or module == "2":
 			pass
-		elif module == 1:
+		elif module == "1":
 			file_name = "{0}{1}".format(module_name, "_run")
-		elif module == 3:
+		elif module == "3":
 			file_name = "{0}".format("settings")
-		elif module == 4:
+		elif module == "4":
 			file_name = "{0}{1}".format("cli_options")
 		return "{0}{1}".format(file_name, ModuleSelector.__EXT)
 

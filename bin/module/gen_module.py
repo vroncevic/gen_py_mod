@@ -32,7 +32,6 @@ class GenModule(ReadTemplate, WriteTemplate):
 		method:
 			__init__ - Create and initial instance
 			gen_module - Generate file python module
-			
 	"""
 
 	def __init__(self):
@@ -50,8 +49,10 @@ class GenModule(ReadTemplate, WriteTemplate):
 		"""
 		status = False
 		module = ModuleSelector.choose_module()
-		content = self.read(module)
-		if content != None:
-			status = self.write(content, module_name, module)
-		return status
+		if module != "8":
+			content = self.read(module)
+			if content != None:
+				status = self.write(content, module_name, module)
+			return status
+		return True
 

@@ -60,7 +60,7 @@ class ReadTemplate(object):
 		"""
 		try:
 			fpath = "{0}".format(
-				self.__template + "/" + ReadTemplate.__TEMPLATES[module]
+				self.__template + "/" + ReadTemplate.__TEMPLATES[str(module)]
 			)
 			tfile = open(fpath, "r")
 			setup_content = tfile.read()

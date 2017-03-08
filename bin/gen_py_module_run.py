@@ -1,4 +1,4 @@
-# /usr/bin/env python
+#!/usr/bin/env python
 # encoding: utf-8
 """
 gen_py_module_run - It defines main entry point.

@@ -19,7 +19,8 @@ Usage:
 import sys
 from app.base import Base
 from module.gen_module import GenModule
-from os.path import dirname, realpath
+from os.path import dirname, realpath, exists
+from datetime import datetime
 
 class GenPyModule(Base, GenModule):
 	"""
@@ -55,6 +56,9 @@ class GenPyModule(Base, GenModule):
 		"""
 		@summary: Process and run tool option(s)
 		"""
+		tool = "[{0}]".format(self.get_name())
+		ver = "version {0}".format(self.get_version())
+		print("\n{0} {1} {2}".format(tool, ver, datetime.now().date()))
 		if self.get_tool_status():
 			if len(sys.argv) > 1:
 				op = sys.argv[1]
@@ -64,12 +68,20 @@ class GenPyModule(Base, GenModule):
 			else:
 				sys.argv.append("-h")
 			opts, args = self.parse_args(sys.argv)
-			if len(args) == 1 and opts.mod:
+			pymod = "{0}.py".format(opts.mod)
+			if len(args) == 1 and opts.mod and not exists(pymod.lower()):
+				op_txt = "generating python module"
+				print("{0} {1} [{2}]".format(tool, op_txt, opts.mod))
 				status = self.gen_module("{0}".format(opts.mod))
 				if status == True:
-					print("Done!\n")
+					print("\n{0} {1}".format(tool, "done!\n"))
+				else:
+					op_txt = "failed to process and run option!\n"
+					print("{0} {1}".format(tool, op_txt))
 			else:
-				print("Failed to process and run option!\n")
+				op_txt = "module name already exist in local folder!\n"
+				print("{0} {1}".format(tool, op_txt))
 		else:
-			print("Tool is not operational!\n")
+			op_txt = "tool is not operational!\n"
+			print("{0} {1}".format(tool, op_txt))
 
