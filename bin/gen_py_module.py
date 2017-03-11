@@ -56,10 +56,10 @@ class GenPyModule(Base, GenModule):
 		"""
 		@summary: Process and run tool option(s)
 		"""
-		tool = "[{0}]".format(self.get_name())
-		ver = "version {0}".format(self.get_version())
-		print("\n{0} {1} {2}".format(tool, ver, datetime.now().date()))
 		if self.get_tool_status():
+			tool = "[{0}]".format(self.get_name())
+			ver = "version {0}".format(self.get_version())
+			print("\n{0} {1} {2}".format(tool, ver, datetime.now().date()))
 			if len(sys.argv) > 1:
 				op = sys.argv[1]
 				if op not in GenPyModule.__OPS:
@@ -83,5 +83,5 @@ class GenPyModule(Base, GenModule):
 				print("{0} {1}".format(tool, op_txt))
 		else:
 			op_txt = "tool is not operational!\n"
-			print("{0} {1}".format(tool, op_txt))
+			print("[{0}] {1}".format("gen_py_module", op_txt))
 

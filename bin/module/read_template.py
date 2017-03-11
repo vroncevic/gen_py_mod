@@ -4,11 +4,13 @@ setup.read_template - class ReadTemplate
 
 Usage:
 	from setup.read_template import ReadTemplate
+	# ...
 
 	template_reader = ReadTemplate()
-	content_template = template_reader.read(module)
-	if content_template != None:
+	module_content = template_reader.read(module_type)
+	if module_content != None:
 		# operate with content
+		# ...
 
 @date: Feb 24, 2017
 @author: Vladimir Roncevic
@@ -19,6 +21,7 @@ Usage:
 """
 
 from os.path import dirname, realpath
+from module.module_selector import ModuleSelector
 
 class ReadTemplate(object):
 	"""
@@ -30,43 +33,43 @@ class ReadTemplate(object):
 			__TEMPLATES - Modules (python templates)
 			__template - Absolute template file path
 		method:
-			__init__ - Create and initial instance
-			read - Read a template and return a string representation
+			__init__ - Initial constructor
+			read - Read a template and return a content or None
 	"""
-	
+
 	__TEMPLATE_DIR = "/../../conf/template"
 
 	__TEMPLATES = {
-		"1" : "empty.template",
-		"2" : "main.template",
-		"3" : "class.template",
-		"4" : "settings.template",
-		"5" : "options.template",
-		"6" : "abstract_base_class.template",
-		"7" : "abstract_google_class.template"
+		ModuleSelector.Empty : "empty.template",
+		ModuleSelector.Main : "main.template",
+		ModuleSelector.Class : "class.template",
+		ModuleSelector.NotImp : "abstract_base_class.template",
+		ModuleSelector.ABC : "abstract_abc_class.template"
 	}
 
 	def __init__(self):
 		"""
-		@summary: Basic constructor (initial absolute template file path)
+		@summary: Basic constructor
 		"""
 		cdir = dirname(realpath(__file__))
 		self.__template = "{0}{1}".format(cdir, ReadTemplate.__TEMPLATE_DIR)
 
-	def read(self, module):
+	def read(self, module_type):
 		"""
 		@summary: Read a template file and return a content
-		@return: String text code
+		@return: Template module content or None
 		"""
 		try:
-			fpath = "{0}".format(
-				self.__template + "/" + ReadTemplate.__TEMPLATES[str(module)]
+			fpath = "{0}/{1}".format(
+				self.__template, ReadTemplate.__TEMPLATES[module_type]
 			)
 			tfile = open(fpath, "r")
-			setup_content = tfile.read()
-			tfile.close()
-			return setup_content
+			module_content = tfile.read()
 		except IOError as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-			return None
+		else:
+			if bool(module_content):
+				tfile.close()
+				return module_content
+		return None
 

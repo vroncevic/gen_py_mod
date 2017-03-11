@@ -7,10 +7,11 @@ Usage:
 
 	module = ModuleSelector.choose_module()
 	# operate with module
-	...
+	# ...
 
 	file_name = ModuleSelector.format_name(module_name, module)
 	# operate with file name
+	# ...
 
 @date: Feb 25, 2017
 @author: Vladimir Roncevic
@@ -26,58 +27,55 @@ class ModuleSelector(object):
 	Selecting python template module for generating process.
 	It defines:
 		attribute:
-			__EXT - Extension python file
-			__MODULES - List of options
+			Empty - 0 Empty modul3
+			Main - 1 Main module
+			Class - 2 Class module
+			NotImp - 3 Not implemented (Abstract) class module
+			ABC - 4 ABC abstract module
+			Cancel - 5 Cancel option
+			__MODULES - Dictionary with option/description
 		method:
 			choose_module - Selecting type of module for generating process
+			format_name - Formating name for file module
 	"""
 
-	__EXT = ".py"
+	Empty, Main, Class, NotImp, ABC, Cancel = range(6)
 
 	__MODULES = {
-		"1" : "Empty module",
-		"2" : "Main module",
-		"3" : "Class module",
-		"4" : "Settings module",
-		"5" : "Options module",
-		"6" : "Abstract base module",
-		"7" : "Abstract Google base module",
-		"8" : "Cancel"
+		Empty : "Empty module",
+		Main : "Main module",
+		Class : "Class module",
+		NotImp : "Abstract base module",
+		ABC : "Abstract ABC base module",
+		Cancel : "Cancel"
 	}
 
 	@classmethod
 	def choose_module(cls):
 		"""
 		@summary: Selecting type of module for generating process
-		@return: Range (1, 4)
+		@return: 0(Empty), 1(Main), 2(Class), 3(Not implem.), 4(ABC), 5(Cancel)
 		"""
 		print("\n Module option list:")
 		for key in sorted(ModuleSelector.__MODULES):
-			print("  {0}".format(key + " " + ModuleSelector.__MODULES[key]))
+			print("  {0} {1}".format(key, ModuleSelector.__MODULES[key]))
 		while True:
 			module = input(" Select module: ")
-			if str(module) not in ModuleSelector.__MODULES.keys():
+			if module not in ModuleSelector.__MODULES.keys():
 				print(" Not an appropriate choice.")
 			else:
 				break
-		return str(module)
+		return module
 
 	@classmethod
-	def format_name(cls, module_name, module):
+	def format_name(cls, module_name, module_type):
 		"""
 		@summary: Format file name by module name and module type
 		@param module_name: Module name (translate to lower case)
-		@param module: Type of module (empty/class/main/settings/options)
+		@param module_type: Type of module (empty/class/main/NotImpl/ABC)
 		@return: File name with extension
 		"""
-		file_name = module_name.lower()
-		if module == "0" or module == "2":
-			pass
-		elif module == "1":
-			file_name = "{0}{1}".format(module_name, "_run")
-		elif module == "3":
-			file_name = "{0}".format("settings")
-		elif module == "4":
-			file_name = "{0}{1}".format("cli_options")
-		return "{0}{1}".format(file_name, ModuleSelector.__EXT)
+		if module_type == ModuleSelector.__MODULES[ModuleSelector.Main]:
+			return "{0}_run{1}".format(module_name.lower(), ".py")
+		return "{0}{1}".format(module_name.lower(), ".py")
 

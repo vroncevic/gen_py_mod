@@ -6,10 +6,11 @@ Usage:
 	from setup.write_template import WriteTemplate
 
 	template_writter = WriteTemplate()
-	...
-	status = template_writter.write(setup_content, module_name, module)
+	# ...
+	status = template_writter.write(module_content, module_name)
 	if status == True:
 		# operation done
+		# ...
 
 @date: Feb 24, 2017
 @author: Vladimir Roncevic
@@ -20,7 +21,7 @@ Usage:
 """
 
 from datetime import date
-from os import getcwd
+from os import getcwd, chmod
 from string import Template
 from module.module_selector import ModuleSelector
 
@@ -32,7 +33,7 @@ class WriteTemplate(object):
 		attribute:
 			None
 		method:
-			__init__ - Create and initial instance
+			__init__ - Initial constructor
 			write - Write a template content with parameters to a file
 	"""
 
@@ -42,16 +43,15 @@ class WriteTemplate(object):
 		"""
 		pass
 
-	def write(self, setup_content, module_name, module):
+	def write(self, setup_content, module_name, module_type):
 		"""
 		@summary: Write a template content with parameters to a file
-		@param setup_content: Template content
+		@param module_content: Template content
 		@param module_name: Parameter module name
-		@param module: Type of module
 		@return: Success return true, else return false
 		"""
 		cdir = getcwd()
-		file_name = ModuleSelector.format_name(module_name, module)
+		file_name = ModuleSelector.format_name(module_name, module_type)
 		module_file = "{0}/{1}".format(cdir, file_name)
 		module = {
 			"mod" : "{0}".format(module_name),
@@ -63,14 +63,12 @@ class WriteTemplate(object):
 			template = Template(setup_content)
 			mfile = open(module_file, "w")
 			mfile.write(template.substitute(module))
-			mfile.close()
-		except IOError as e:
+		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
 			mfile.close()
-			return False
-		except KeyError as e2:
-			print("Key error({0}): {1}".format(e2.errno, e2.strerror))
-			return False
 		else:
+			chmod(module_file, 0o666)
+			mfile.close()
 			return True
+		return False
 

@@ -3,7 +3,7 @@
 $modlc - class $mod
 
 Usage:
-	
+	from $modlc import $mod
 
 @date: $date
 @author: Vladimir Roncevic
@@ -12,6 +12,7 @@ Usage:
 @license: GNU General Public License (GPL)
 @deffield: updated: Updated
 """
+
 from abc import ABCMeta, abstractmethod
 
 class $mod(object):

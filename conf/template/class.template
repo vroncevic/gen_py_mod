@@ -3,7 +3,7 @@
 $modlc - class $mod
 
 Usage:
-	
+	from $modlc import $mod
 
 @date: $date
 @author: Vladimir Roncevic
@@ -21,6 +21,12 @@ class ${mod}(object):
 		attribute:
 			
 		method:
-			
+			__init__ - Initial constructor
 	"""
+
+	def __init__(self):
+		"""
+		@summray: Basic constructor
+		"""
+		pass
 

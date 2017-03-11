@@ -4,11 +4,13 @@ module.gen_module - class GenModule
 
 Usage:
 	from module.gen_setup import GenModule
+	# ...
 
 	generator = GenModule()
 	status = generator.gen_module("configuration")
 	if status:
 		# operation done
+		# ...
 
 @date: Feb 25, 2017
 @author: Vladimir Roncevic
@@ -30,7 +32,7 @@ class GenModule(ReadTemplate, WriteTemplate):
 		attribute:
 			None
 		method:
-			__init__ - Create and initial instance
+			__init__ - Initial constructor
 			gen_module - Generate file python module
 	"""
 
@@ -43,16 +45,16 @@ class GenModule(ReadTemplate, WriteTemplate):
 
 	def gen_module(self, module_name):
 		"""
-		@summary: Generate setup.py by template and parameters
+		@summary: Generate module by template and parameters
 		@param module_name: Parameter module name
 		@return: Success return true, else return false
 		"""
 		status = False
-		module = ModuleSelector.choose_module()
-		if module != "8":
-			content = self.read(module)
-			if content != None:
-				status = self.write(content, module_name, module)
+		module_type = ModuleSelector.choose_module()
+		if module_type != ModuleSelector.Cancel:
+			module_content = self.read(module_type)
+			if module_content != None:
+				status = self.write(module_content, module_name, module_type)
 			return status
 		return True
 

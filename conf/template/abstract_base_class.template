@@ -3,7 +3,7 @@
 $modlc - class $mod
 
 Usage:
-	
+	from $modlc import $mod
 
 @date: $date
 @author: Vladimir Roncevic
