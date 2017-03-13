@@ -10,7 +10,7 @@ __status__ = "Updated"
 
 class ${mod}(object):
 	"""
-	Define class $mod with atribute(s) and method(s).
+	Define class $mod with attribute(s) and method(s).
 	
 	It defines:
 		attribute:
@@ -20,8 +20,5 @@ class ${mod}(object):
 	"""
 
 	def __init__(self):
-		"""
-		@summray: Basic constructor
-		"""
 		pass
 
