@@ -25,15 +25,9 @@ class $mod(object):
 	__metaclass__ = ABCMeta
 
 	def __init__(self):
-		"""
-		@summary: Basic costructor
-		"""
 		pass
 
 	@abstractmethod
 	def abstract_method(self):
-		"""
-		@summary: 
-		"""
 		pass
 

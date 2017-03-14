@@ -30,16 +30,18 @@ class WriteTemplate(object):
 
 	def write(self, module_content, module_name, module_type):
 		"""
-		:arg: module_content - Template content
+		:param module_content: Template content
 		:type: str
-		:arg: module_name - File name
+		:param module_name: File name
+		:type: str
+		:param module_type: Type of module
 		:type: str
 		:return: Boolean status
 		:rtype: bool
 		"""
 		current_dir = getcwd()
 		file_name = ModuleSelector.format_name(module_name, module_type)
-		module_file = "{0}/{1}".format(current_dir, file_name)
+		module_file_name = "{0}/{1}".format(current_dir, file_name)
 		module = {
 			"mod" : "{0}".format(module_name),
 			"modlc": "{0}".format(module_name.lower()),
@@ -48,13 +50,12 @@ class WriteTemplate(object):
 		}
 		try:
 			template = Template(module_content)
-			module_file = open(module_file, "w")
+			module_file = open(module_file_name, "w")
 			module_file.write(template.substitute(module))
 		except (IOError, KeyError) as e:
 			print("I/O error({0}): {1}".format(e.errno, e.strerror))
-			module_file.close()
 		else:
-			chmod(module_file, 0o666)
 			module_file.close()
+			chmod(path=module_file_name, mode=0o666)
 			return True
 		return False

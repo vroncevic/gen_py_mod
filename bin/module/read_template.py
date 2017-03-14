@@ -43,7 +43,7 @@ class ReadTemplate(object):
 
 	def read(self, module_type):
 		"""
-		:arg: module_name - File name
+		:param module_type: File name
 		:type: str
 		:return: Template module content
 		:rtype: str or NoneType

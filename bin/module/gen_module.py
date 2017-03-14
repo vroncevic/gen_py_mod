@@ -30,7 +30,7 @@ class GenModule(ReadTemplate, WriteTemplate):
 
 	def gen_module(self, module_name):
 		"""
-		:arg: module_name - Parameter module name
+		:param module_name: Parameter module name
 		:type: str
 		:return: Boolean status
 		:rtype: bool

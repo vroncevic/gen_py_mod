@@ -57,9 +57,9 @@ class ModuleSelector(object):
 	@classmethod
 	def format_name(cls, module_name, module_type):
 		"""
-		:arg: module_name - Module name (translate to lower case)
+		:param module_name: Module name (translate to lower case)
 		:type: str
-		:arg: module_type - Type of module (empty/class/main/NotImpl/ABC)
+		:param module_type: Type of module (empty/class/main/NotImpl/ABC)
 		:type: str
 		:return: File name with extension
 		:rtype: str
