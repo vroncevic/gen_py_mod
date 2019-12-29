@@ -20,6 +20,34 @@ This module requires these other modules and libraries:
 
 * ats_utilities https://vroncevic.github.io/ats_utilities
 
+### Tool structure
+
+![alt tag](https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/python-tool-docs/gen_py_module.png)
+
+```
+.
+├── bin
+│   ├── gen_py_module.py
+│   ├── gen_py_module_run.py
+│   └── module
+│       ├── gen_module.py
+│       ├── __init__.py
+│       ├── module_selector.py
+│       ├── read_template.py
+│       └── write_template.py
+├── conf
+│   ├── gen_py_module.cfg
+│   ├── gen_py_module_util.cfg
+│   └── template
+│       ├── abstract_abc_class.template
+│       ├── abstract_base_class.template
+│       ├── class.template
+│       ├── empty.template
+│       └── main.template
+└── log
+    └── gen_py_module.log
+```
+
 ### COPYRIGHT AND LICENCE
 
 Copyright (C) 2018 by hhttps://vroncevic.github.io/gen_py_module
