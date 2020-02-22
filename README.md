@@ -1,6 +1,6 @@
 # Generate Python Module
 
-gen_py_module is toolset for generation Linux Kernel Module project.
+gen_py_module is toolset for generation Py Module.
 
 Developed in python code: 100%.
 
