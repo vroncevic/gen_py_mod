@@ -1,30 +1,35 @@
 # -*- coding: UTF-8 -*-
-# module_selector.py
-# Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
-#
-# dist_py_module is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by the
-# Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# dist_py_module is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program. If not, see <http://www.gnu.org/licenses/>.
-#
+
+"""
+ Module
+     module_selector.py
+ Copyright
+     Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+     gen_py_module is free software: you can redistribute it and/or modify it
+     under the terms of the GNU General Public License as published by the
+     Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     gen_py_module is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+     See the GNU General Public License for more details.
+     You should have received a copy of the GNU General Public License along
+     with this program. If not, see <http://www.gnu.org/licenses/>.
+ Info
+     Define class ModuleSelector with attribute(s) and method(s).
+     Selecting python template module for generating process.
+"""
 
 import sys
 from inspect import stack
 
 try:
+    from ats_utilities.console_io.error import error_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as e:
-    msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ##################################
+except ImportError as error:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = "Vladimir Roncevic"
 __copyright__ = "Copyright 2018, Free software to use and distributed it."
@@ -66,6 +71,7 @@ class ModuleSelector(object):
         'Cancel',
         '__MODULES'
     )
+    VERBOSE = 'GEN_PY_MODULE::MODULE::MODULE_SELECTOR'
     Empty, Main, Class, NotImp, ABC, Cancel = range(6)
     __MODULES = {
         Empty : "Empty module",
@@ -88,9 +94,14 @@ class ModuleSelector(object):
         for key in sorted(ModuleSelector.__MODULES):
             print("  {0} {1}".format(key, ModuleSelector.__MODULES[key]))
         while True:
-            module_type = input(" Select module: ")
+            try:
+                module_type = int(raw_input(" Select module: "))
+            except NameError:
+                module_type = int(input(" Select module: "))
             if module_type not in ModuleSelector.__MODULES.keys():
-                print(" Not an appropriate choice.")
+                error_message(
+                    ModuleSelector.VERBOSE, 'Not an appropriate choice.'
+                )
             else:
                 break
         return module_type
@@ -107,7 +118,7 @@ class ModuleSelector(object):
             :rtype: <str>
             :exceptions: ATSBadCallError | ATSTypeError
         """
-        func, status = stack()[0][3], False
+        func = stack()[0][3]
         module_name_txt = 'Argument: expected module_name <str> object'
         module_name_msg = "{0} {1} {2}".format('def', func, module_name_txt)
         module_type_txt = 'Argument: expected module_name <str> object'
@@ -118,9 +129,8 @@ class ModuleSelector(object):
             raise ATSTypeError(module_name_msg)
         if module_type is None or not module_type:
             raise ATSBadCallError(module_type_msg)
-        if not isinstance(module_type, str):
+        if not isinstance(module_type, int):
             raise ATSTypeError(module_type_msg)
         if module_type == ModuleSelector.__MODULES[ModuleSelector.Main]:
             return "{0}_run{1}".format(module_name.lower(), ".py")
         return "{0}{1}".format(module_name.lower(), ".py")
-

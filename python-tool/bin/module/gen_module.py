@@ -1,20 +1,24 @@
 # -*- coding: UTF-8 -*-
-# gen_module.py
-# Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
-#
-# gen_py_module is free software: you can redistribute it and/or modify it
-# under the terms of the GNU General Public License as published by the
-# Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# gen_py_module is distributed in the hope that it will be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program. If not, see <http://www.gnu.org/licenses/>.
-#
+
+"""
+ Module
+     gen_module.py
+ Copyright
+     Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+     gen_py_module is free software: you can redistribute it and/or modify it
+     under the terms of the GNU General Public License as published by the
+     Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+     gen_py_module is distributed in the hope that it will be useful, but
+     WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+     See the GNU General Public License for more details.
+     You should have received a copy of the GNU General Public License along
+     with this program. If not, see <http://www.gnu.org/licenses/>.
+ Info
+     Define class GenModule with attribute(s) and method(s).
+     Generate python module by template and parameters.
+"""
 
 import sys
 from inspect import stack
@@ -26,9 +30,9 @@ try:
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as e:
-    msg = "\n{0}\n{1}\n".format(__file__, e)
-    sys.exit(msg)  # Force close python ATS ##################################
+except ImportError as error:
+    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+    sys.exit(MESSAGE)  # Force close python ATS ##############################
 
 __author__ = "Vladimir Roncevic"
 __copyright__ = "Copyright 2018, Free software to use and distributed it."
@@ -52,11 +56,13 @@ class GenModule(object):
                 __writer - Writer API
             method:
                 __init__ - Initial constructor
+                get_reader - Getter for reader object
+                get_writer - Getter for writer object
                 gen_module - Generate file python module
     """
 
     __slots__ = ('VERBOSE', '__reader', '__writer')
-    VERBOSE = 'MODULE::GEN_MODULE'
+    VERBOSE = 'GEN_PY_MODULE::MODULE::GEN_MODULE'
 
     def __init__(self, verbose=False):
         """
@@ -68,6 +74,24 @@ class GenModule(object):
         verbose_message(GenModule.VERBOSE, verbose, 'Initial module')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
+
+    def get_reader(self):
+        """
+            Getter for reader object.
+            :return: Read template object
+            :rtype: <ReadTemplate>
+            :exceptions: None
+        """
+        return self.__reader
+
+    def get_writer(self):
+        """
+            Getter for writer object.
+            :return: Write template object
+            :rtype: <WriteTemplate>
+            :exceptions: None
+        """
+        return self.__writer
 
     def gen_module(self, module_name, verbose=False):
         """
@@ -92,8 +116,9 @@ class GenModule(object):
         )
         module_type = ModuleSelector.choose_module()
         if module_type != ModuleSelector.Cancel:
-            module_content = self.read(module_type)
+            module_content = self.__reader.read(module_type, verbose=verbose)
             if module_content:
-                status = self.write(module_content, module_name, module_type)
+                status = self.__writer.write(
+                    module_content, module_name, module_type, verbose=verbose
+                )
         return True if status else False
-
