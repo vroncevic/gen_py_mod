@@ -30,9 +30,11 @@ RUN rm -f requirements.txt
 RUN mkdir /gen_py_module/
 COPY gen_py_module /gen_py_module/
 COPY setup.py /
+COPY README.md /
 RUN find /gen_py_module/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
 RUN python setup.py install_lib && python setup.py install_egg_info && python setup.py install_data
 RUN rm -rf /gen_py_module/
 RUN rm -f setup.py
+RUN rm -f README.md
 RUN chmod -R 755 /usr/local/lib/python2.7/dist-packages/gen_py_module/
 RUN tree /usr/local/lib/python2.7/dist-packages/gen_py_module/
