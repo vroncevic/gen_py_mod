@@ -20,26 +20,32 @@
      Define setup for gen_py_module package.
 """
 
+from os.path import abspath, dirname, join
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2020, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
+THIS_DIR, LONG_DESCRIPTION = abspath(dirname(__file__)), None
+with open(join(THIS_DIR, 'README.md')) as readme:
+    LONG_DESCRIPTION = readme.read()
+
 setup(
     name='gen_py_module',
-    version='1.0.0',
+    version='1.1.0',
     description='Generating PY module',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
     url='https://vroncevic.github.io/gen_py_module/',
     license='GPL 2020 Free software to use and distributed it.',
-    long_description='Generating PY module in Unix/Linux OS.',
+    long_description=LONG_DESCRIPTION,
+    long_description_content_type='text/markdown',
     keywords='Unix, Linux, Development, PY, module',
     platforms='POSIX',
     classifiers=[
@@ -59,8 +65,8 @@ setup(
     data_files=[
         ('/usr/local/bin/', ['gen_py_module/run/gen_py_module_run.py']),
         (
-             '/usr/local/lib/python2.7/dist-packages/gen_py_module/conf/',
-             ['gen_py_module/conf/gen_py_module.cfg']
+            '/usr/local/lib/python2.7/dist-packages/gen_py_module/conf/',
+            ['gen_py_module/conf/gen_py_module.cfg']
         ),
         (
             '/usr/local/lib/python2.7/dist-packages/gen_py_module/conf/',
