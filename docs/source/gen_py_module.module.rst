@@ -6,7 +6,6 @@ Submodules
 
 .. toctree::
 
-   gen_py_module.module.gen_module
    gen_py_module.module.module_selector
    gen_py_module.module.read_template
    gen_py_module.module.write_template

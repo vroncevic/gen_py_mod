@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.2.0
               </div>
             
           
@@ -177,7 +177,7 @@
 <dt>Module</dt>
 <dd>read_template.py</dd>
 <dt>Copyright</dt>
-<dd>Copyright (C) 2018 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dd>Copyright (C) 2017 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 gen_py_module is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -189,15 +189,15 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</dd>
 <dt>Info</dt>
-<dd>Define class ReadTemplate with attribute(s) and method(s).
-Read a template file and return a string representation.</dd>
+<dd>Defined class ReadTemplate with attribute(s) and method(s).
+Created API for reading a template and return a string representation.</dd>
 </dl>
 <dl class="class">
 <dt id="gen_py_module.module.read_template.ReadTemplate">
 <em class="property">class </em><code class="descclassname">gen_py_module.module.read_template.</code><code class="descname">ReadTemplate</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gen_py_module/module/read_template.html#ReadTemplate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Define class ReadTemplate with attribute(s) and method(s).
-Read a template file and return a string representation.
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.config_io.base_check.FileChecking</span></code></p>
+<p>Defined class ReadTemplate with attribute(s) and method(s).
+Created API for reading a template and return a string representation.
 It defines:</p>
 <blockquote>
 <div><table class="docutils field-list" frame="void" rules="none">
@@ -205,18 +205,18 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">__TEMPLATE_DIR - Prefix path to templates</div>
-<div class="line">__TEMPLATES - Modules (python templates)</div>
-<div class="line">__template - Absolute template file path</div>
+<div class="line">GEN_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">TEMPLATE_DIR - prefix path to templates.</div>
+<div class="line">TEMPLATES - modules (python templates).</div>
+<div class="line">__template_dir - template dir path.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__init__ - Initial constructor</div>
-<div class="line">get_template - Getter for template dir path</div>
-<div class="line">read - Read a template and return a content or None</div>
+<div class="line">__init__ - initial constructor.</div>
+<div class="line">get_template - getter for template dir path.</div>
+<div class="line">read - read a template and return a content or None.</div>
+<div class="line">__str__ - dunder method for ReadTemplate.</div>
 </div>
 </td>
 </tr>
@@ -224,8 +224,23 @@ It defines:</p>
 </table>
 </div></blockquote>
 <dl class="attribute">
+<dt id="gen_py_module.module.read_template.ReadTemplate.GEN_VERBOSE">
+<code class="descname">GEN_VERBOSE</code><em class="property"> = 'GEN_PY_MODULE::MODULE::READ_TEMPLATE'</em><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate.GEN_VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gen_py_module.module.read_template.ReadTemplate.TEMPLATES">
+<code class="descname">TEMPLATES</code><em class="property"> = {0: 'empty.template', 1: 'main.template', 2: 'class.template', 3: 'abstract_base_class.template', 4: 'abstract_abc_class.template'}</em><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate.TEMPLATES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gen_py_module.module.read_template.ReadTemplate.TEMPLATE_DIR">
+<code class="descname">TEMPLATE_DIR</code><em class="property"> = '/../conf/template/'</em><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate.TEMPLATE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="gen_py_module.module.read_template.ReadTemplate.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'GEN_PY_MODULE::MODULE::READ_TEMPLATE'</em><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate.VERBOSE" title="Permalink to this definition">¶</a></dt>
+<code class="descname">VERBOSE</code><em class="property"> = 'ATS_UTILITIES'</em><a class="headerlink" href="#gen_py_module.module.read_template.ReadTemplate.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -236,9 +251,9 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Template dir path</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">template dir path | None.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt;</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;str&gt; | &lt;NoneType&gt;</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Exceptions:</th><td class="field-body">None</td>
 </tr>
@@ -255,18 +270,18 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module_type</strong> (<em>&lt;str&gt;</em>) – File name</li>
-<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – Enable/disable verbose option</li>
+<li><strong>module_type</strong> (<em>&lt;int&gt;</em>) – file name.</li>
+<li><strong>verbose</strong> (<em>&lt;bool&gt;</em>) – enable/disable verbose option.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Template module content | None</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">template module content | None.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">&lt;str&gt; | &lt;NoneType&gt;</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSBadCallError | ATSTypeError</p>
+<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSTypeError | ATSBadCallError</p>
 </td>
 </tr>
 </tbody>
@@ -298,7 +313,7 @@ It defines:</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+        &copy; Copyright 2017, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>
