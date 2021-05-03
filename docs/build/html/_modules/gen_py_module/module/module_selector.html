@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.2.0
               </div>
             
           
@@ -138,6 +138,8 @@
         
           <li><a href="../../gen_py_module.html">gen_py_module</a> &raquo;</li>
         
+          <li><a href="../module.html">gen_py_module.module</a> &raquo;</li>
+        
       <li>gen_py_module.module.module_selector</li>
     
     
@@ -156,11 +158,11 @@
   <h1>Source code for gen_py_module.module.module_selector</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: UTF-8 -*-</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 <span class="sd"> Module</span>
 <span class="sd">     module_selector.py</span>
 <span class="sd"> Copyright</span>
-<span class="sd">     Copyright (C) 2018 Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;</span>
+<span class="sd">     Copyright (C) 2017 Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;</span>
 <span class="sd">     gen_py_module is free software: you can redistribute it and/or modify it</span>
 <span class="sd">     under the terms of the GNU General Public License as published by the</span>
 <span class="sd">     Free Software Foundation, either version 3 of the License, or</span>
@@ -172,93 +174,83 @@
 <span class="sd">     You should have received a copy of the GNU General Public License along</span>
 <span class="sd">     with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <span class="sd"> Info</span>
-<span class="sd">     Define class ModuleSelector with attribute(s) and method(s).</span>
+<span class="sd">     Definedd class ModuleSelector with attribute(s) and method(s).</span>
 <span class="sd">     Selecting python template module for generating process.</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">&#39;&#39;&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">stack</span>
 
 <span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="kn">import</span> <span class="n">error_message</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="kn">import</span> <span class="n">ATSTypeError</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="kn">import</span> <span class="n">ATSBadCallError</span>
-<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
-    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ats_error_message</span><span class="p">:</span>
+    <span class="n">MESSAGE</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{0}</span><span class="se">\n</span><span class="si">{1}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__file__</span><span class="p">,</span> <span class="n">ats_error_message</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">MESSAGE</span><span class="p">)</span>  <span class="c1"># Force close python ATS ##############################</span>
 
-<span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Vladimir Roncevic&quot;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;Copyright 2018, Free software to use and distributed it.&quot;</span>
-<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Vladimir Roncevic&quot;</span><span class="p">]</span>
-<span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;GNU General Public License (GPL)&quot;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0.0&quot;</span>
-<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s2">&quot;Vladimir Roncevic&quot;</span>
-<span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;elektron.ronca@gmail.com&quot;</span>
-<span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Updated&quot;</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, Free software to use and distributed it.&#39;</span>
+<span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.2.0&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="ModuleSelector"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector">[docs]</a><span class="k">class</span> <span class="nc">ModuleSelector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Define class ModuleSelector with attribute(s) and method(s).</span>
+<div class="viewcode-block" id="ModuleSelector"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector">[docs]</a><span class="k">class</span> <span class="nc">ModuleSelector</span><span class="p">:</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Defined class ModuleSelector with attribute(s) and method(s).</span>
 <span class="sd">        Selecting python template module for generating process.</span>
 <span class="sd">        It defines:</span>
 
 <span class="sd">            :attributes:</span>
-<span class="sd">                | __slots__ - Setting class slots</span>
-<span class="sd">                | VERBOSE - Console text indicator for current process-phase</span>
-<span class="sd">                | Empty  - 0 Empty module</span>
-<span class="sd">                | Main   - 1 Main module</span>
-<span class="sd">                | Class  - 2 Class module</span>
-<span class="sd">                | NotImp - 3 Not implemented (Abstract) class module</span>
-<span class="sd">                | ABC    - 4 ABC abstract module</span>
-<span class="sd">                | Cancel - 5 Cancel option</span>
-<span class="sd">                | __MODULES - Dictionary with option/description</span>
+<span class="sd">                | GEN_VERBOSE - console text indicator for process-phase.</span>
+<span class="sd">                | Empty  - 0 Empty module.</span>
+<span class="sd">                | Main   - 1 Main module.</span>
+<span class="sd">                | Class  - 2 Class module.</span>
+<span class="sd">                | NotImp - 3 Not implemented (Abstract) class module.</span>
+<span class="sd">                | ABC    - 4 ABC abstract module.</span>
+<span class="sd">                | Cancel - 5 Cancel option.</span>
+<span class="sd">                | MODULES - dictionary with option/description.</span>
 <span class="sd">            :methods:</span>
-<span class="sd">                | choose_module - Selecting type of module for generating process</span>
-<span class="sd">                | format_name - Formatting name for file module</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">                | choose_module - selecting type of module.</span>
+<span class="sd">                | format_name - formatting name for file module.</span>
+<span class="sd">                | __str__ - dunder method for ModuleSelector.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Empty&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Main&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Class&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;NotImp&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;ABC&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;Cancel&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;__MODULES&#39;</span>
-    <span class="p">)</span>
-    <span class="n">VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;GEN_PY_MODULE::MODULE::MODULE_SELECTOR&#39;</span>
+    <span class="n">GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;GEN_PY_MODULE::MODULE::MODULE_SELECTOR&#39;</span>
     <span class="n">Empty</span><span class="p">,</span> <span class="n">Main</span><span class="p">,</span> <span class="n">Class</span><span class="p">,</span> <span class="n">NotImp</span><span class="p">,</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">Cancel</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">__MODULES</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Empty</span> <span class="p">:</span> <span class="s2">&quot;Empty module&quot;</span><span class="p">,</span>
-        <span class="n">Main</span> <span class="p">:</span> <span class="s2">&quot;Main module&quot;</span><span class="p">,</span>
-        <span class="n">Class</span> <span class="p">:</span> <span class="s2">&quot;Class module&quot;</span><span class="p">,</span>
-        <span class="n">NotImp</span> <span class="p">:</span> <span class="s2">&quot;Abstract base module&quot;</span><span class="p">,</span>
-        <span class="n">ABC</span> <span class="p">:</span> <span class="s2">&quot;Abstract ABC base module&quot;</span><span class="p">,</span>
-        <span class="n">Cancel</span> <span class="p">:</span> <span class="s2">&quot;Cancel&quot;</span>
+    <span class="n">MODULES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">Empty</span> <span class="p">:</span> <span class="s1">&#39;Empty module&#39;</span><span class="p">,</span>
+        <span class="n">Main</span> <span class="p">:</span> <span class="s1">&#39;Main module&#39;</span><span class="p">,</span>
+        <span class="n">Class</span> <span class="p">:</span> <span class="s1">&#39;Class module&#39;</span><span class="p">,</span>
+        <span class="n">NotImp</span> <span class="p">:</span> <span class="s1">&#39;Abstract base module&#39;</span><span class="p">,</span>
+        <span class="n">ABC</span> <span class="p">:</span> <span class="s1">&#39;Abstract ABC base module&#39;</span><span class="p">,</span>
+        <span class="n">Cancel</span> <span class="p">:</span> <span class="s1">&#39;Cancel&#39;</span>
     <span class="p">}</span>
 
 <div class="viewcode-block" id="ModuleSelector.choose_module"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector.choose_module">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">choose_module</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Selecting type of module for generating process.</span>
 
-<span class="sd">            :return: Module type id</span>
+<span class="sd">            :return: Module type id.</span>
 <span class="sd">            :rtype: &lt;int&gt;</span>
 <span class="sd">            :exceptions: None</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Module option list:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">__MODULES</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">__MODULES</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> module option list:&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="s2">&quot; Select module: &quot;</span><span class="p">))</span>
+                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39; select module: &#39;</span><span class="p">))</span>
             <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot; Select module: &quot;</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">module_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">__MODULES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39; select module: &#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">module_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="n">error_message</span><span class="p">(</span>
-                    <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">,</span> <span class="s1">&#39;Not an appropriate choice.&#39;</span>
+                    <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;not an appropriate choice&#39;</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">break</span>
@@ -266,33 +258,38 @@
 
 <div class="viewcode-block" id="ModuleSelector.format_name"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector.format_name">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">format_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">module_type</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Formatting name for file module.</span>
 
-<span class="sd">            :param module_name: Module name (translate to lower case)</span>
+<span class="sd">            :param module_name: module name (translate to lower case).</span>
 <span class="sd">            :type module_name: &lt;str&gt;</span>
-<span class="sd">            :param module_type: Type of module (empty/class/main/NotImpl/ABC)</span>
-<span class="sd">            :type module_type: &lt;str&gt;</span>
-<span class="sd">            :return: File name with extension</span>
+<span class="sd">            :param module_type: type of module (empty/class/main/NotImpl/ABC).</span>
+<span class="sd">            :type module_type: &lt;int&gt;</span>
+<span class="sd">            :return: file name with extension.</span>
 <span class="sd">            :rtype: &lt;str&gt;</span>
-<span class="sd">            :exceptions: ATSBadCallError | ATSTypeError</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
-        <span class="n">module_name_txt</span> <span class="o">=</span> <span class="s1">&#39;Argument: expected module_name &lt;str&gt; object&#39;</span>
-        <span class="n">module_name_msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">module_name_txt</span><span class="p">)</span>
-        <span class="n">module_type_txt</span> <span class="o">=</span> <span class="s1">&#39;Argument: expected module_name &lt;str&gt; object&#39;</span>
-        <span class="n">module_type_msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> </span><span class="si">{1}</span><span class="s2"> </span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">module_type_txt</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">module_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">module_name</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">module_name_msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">module_name_msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">module_type</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">module_type</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">module_type_msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module_type</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">module_type_msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">module_type</span> <span class="o">==</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">__MODULES</span><span class="p">[</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">Main</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">_run</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s2">&quot;.py&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s2">&quot;.py&quot;</span><span class="p">)</span></div></div>
+<span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">checker</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">(),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([</span>
+            <span class="p">(</span><span class="s1">&#39;str:module_name&#39;</span><span class="p">,</span> <span class="n">module_name</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;int:module_type&#39;</span><span class="p">,</span> <span class="n">module_type</span><span class="p">)</span>
+        <span class="p">])</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">TYPE_ERROR</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">VALUE_ERROR</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">module_type</span> <span class="o">==</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">[</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">Main</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">_run</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s1">&#39;.py&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s1">&#39;.py&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">            Dunder method for ModuleSelector.</span>
+
+<span class="sd">            :return: object in a human-readable format.</span>
+<span class="sd">            :rtype: &lt;str&gt;</span>
+<span class="sd">            :exceptions: None</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> ()&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
@@ -306,7 +303,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+        &copy; Copyright 2017, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>

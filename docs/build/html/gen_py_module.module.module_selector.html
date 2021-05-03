@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="gen_py_module.module.read_template module" href="gen_py_module.module.read_template.html" />
-    <link rel="prev" title="gen_py_module.module.gen_module module" href="gen_py_module.module.gen_module.html" /> 
+    <link rel="prev" title="gen_py_module.module package" href="gen_py_module.module.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.0.0
+                1.2.0
               </div>
             
           
@@ -177,7 +177,7 @@
 <dt>Module</dt>
 <dd>module_selector.py</dd>
 <dt>Copyright</dt>
-<dd>Copyright (C) 2018 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
+<dd>Copyright (C) 2017 Vladimir Roncevic &lt;<a class="reference external" href="mailto:elektron&#46;ronca&#37;&#52;&#48;gmail&#46;com">elektron<span>&#46;</span>ronca<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;
 gen_py_module is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
 Free Software Foundation, either version 3 of the License, or
@@ -189,14 +189,13 @@ See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along
 with this program. If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</dd>
 <dt>Info</dt>
-<dd>Define class ModuleSelector with attribute(s) and method(s).
+<dd>Definedd class ModuleSelector with attribute(s) and method(s).
 Selecting python template module for generating process.</dd>
 </dl>
 <dl class="class">
 <dt id="gen_py_module.module.module_selector.ModuleSelector">
 <em class="property">class </em><code class="descclassname">gen_py_module.module.module_selector.</code><code class="descname">ModuleSelector</code><a class="reference internal" href="_modules/gen_py_module/module/module_selector.html#ModuleSelector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Define class ModuleSelector with attribute(s) and method(s).
+<dd><p>Defined class ModuleSelector with attribute(s) and method(s).
 Selecting python template module for generating process.
 It defines:</p>
 <blockquote>
@@ -205,21 +204,21 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
-<div class="line">__slots__ - Setting class slots</div>
-<div class="line">VERBOSE - Console text indicator for current process-phase</div>
-<div class="line">Empty  - 0 Empty module</div>
-<div class="line">Main   - 1 Main module</div>
-<div class="line">Class  - 2 Class module</div>
-<div class="line">NotImp - 3 Not implemented (Abstract) class module</div>
-<div class="line">ABC    - 4 ABC abstract module</div>
-<div class="line">Cancel - 5 Cancel option</div>
-<div class="line">__MODULES - Dictionary with option/description</div>
+<div class="line">GEN_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">Empty  - 0 Empty module.</div>
+<div class="line">Main   - 1 Main module.</div>
+<div class="line">Class  - 2 Class module.</div>
+<div class="line">NotImp - 3 Not implemented (Abstract) class module.</div>
+<div class="line">ABC    - 4 ABC abstract module.</div>
+<div class="line">Cancel - 5 Cancel option.</div>
+<div class="line">MODULES - dictionary with option/description.</div>
 </div>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">methods:</th><td class="field-body"><div class="first last line-block">
-<div class="line">choose_module - Selecting type of module for generating process</div>
-<div class="line">format_name - Formatting name for file module</div>
+<div class="line">choose_module - selecting type of module.</div>
+<div class="line">format_name - formatting name for file module.</div>
+<div class="line">__str__ - dunder method for ModuleSelector.</div>
 </div>
 </td>
 </tr>
@@ -247,6 +246,16 @@ It defines:</p>
 <dd></dd></dl>
 
 <dl class="attribute">
+<dt id="gen_py_module.module.module_selector.ModuleSelector.GEN_VERBOSE">
+<code class="descname">GEN_VERBOSE</code><em class="property"> = 'GEN_PY_MODULE::MODULE::MODULE_SELECTOR'</em><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector.GEN_VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gen_py_module.module.module_selector.ModuleSelector.MODULES">
+<code class="descname">MODULES</code><em class="property"> = {0: 'Empty module', 1: 'Main module', 2: 'Class module', 3: 'Abstract base module', 4: 'Abstract ABC base module', 5: 'Cancel'}</em><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector.MODULES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
 <dt id="gen_py_module.module.module_selector.ModuleSelector.Main">
 <code class="descname">Main</code><em class="property"> = 1</em><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector.Main" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -254,11 +263,6 @@ It defines:</p>
 <dl class="attribute">
 <dt id="gen_py_module.module.module_selector.ModuleSelector.NotImp">
 <code class="descname">NotImp</code><em class="property"> = 3</em><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector.NotImp" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="gen_py_module.module.module_selector.ModuleSelector.VERBOSE">
-<code class="descname">VERBOSE</code><em class="property"> = 'GEN_PY_MODULE::MODULE::MODULE_SELECTOR'</em><a class="headerlink" href="#gen_py_module.module.module_selector.ModuleSelector.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="classmethod">
@@ -269,7 +273,7 @@ It defines:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Module type id</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Module type id.</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">&lt;int&gt;</td>
 </tr>
@@ -288,18 +292,18 @@ It defines:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module_name</strong> (<em>&lt;str&gt;</em>) – Module name (translate to lower case)</li>
-<li><strong>module_type</strong> (<em>&lt;str&gt;</em>) – Type of module (empty/class/main/NotImpl/ABC)</li>
+<li><strong>module_name</strong> (<em>&lt;str&gt;</em>) – module name (translate to lower case).</li>
+<li><strong>module_type</strong> (<em>&lt;int&gt;</em>) – type of module (empty/class/main/NotImpl/ABC).</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">File name with extension</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">file name with extension.</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">&lt;str&gt;</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSBadCallError | ATSTypeError</p>
+<tr class="field-even field"><th class="field-name">Exceptions:</th><td class="field-body"><p class="first last">ATSTypeError | ATSBadCallError</p>
 </td>
 </tr>
 </tbody>
@@ -321,7 +325,7 @@ It defines:</p>
         <a href="gen_py_module.module.read_template.html" class="btn btn-neutral float-right" title="gen_py_module.module.read_template module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="gen_py_module.module.gen_module.html" class="btn btn-neutral float-left" title="gen_py_module.module.gen_module module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gen_py_module.module.html" class="btn btn-neutral float-left" title="gen_py_module.module package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -331,7 +335,7 @@ It defines:</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+        &copy; Copyright 2017, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>

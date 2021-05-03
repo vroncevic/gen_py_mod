@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      write_template.py
  Copyright
-     Copyright (C) 2018 Vladimir Roncevic <elektron.ronca@gmail.com>
+     Copyright (C) 2017 Vladimir Roncevic <elektron.ronca@gmail.com>
      gen_py_module is free software: you can redistribute it and/or modify it
      under the terms of the GNU General Public License as published by the
      Free Software Foundation, either version 3 of the License, or
@@ -16,118 +16,105 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Define class WriteTemplate with atribute(s) and method(s).
-     Write a template content with parameters to a file.
-"""
+     Defined class WriteTemplate with atribute(s) and method(s).
+     Created API for writing a template content with parameters to a file.
+'''
 
 import sys
 from datetime import date
 from os import getcwd, chmod
 from string import Template
-from inspect import stack
 
 try:
     from gen_py_module.module.module_selector import ModuleSelector
+    from ats_utilities.checker import ATSChecker
+    from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
-except ImportError as error:
-    MESSAGE = "\n{0}\n{1}\n".format(__file__, error)
+except ImportError as ats_error_message:
+    MESSAGE = '\n{0}\n{1}\n'.format(__file__, ats_error_message)
     sys.exit(MESSAGE)  # Force close python ATS ##############################
 
-__author__ = "Vladimir Roncevic"
-__copyright__ = "Copyright 2018, Free software to use and distributed it."
-__credits__ = ["Vladimir Roncevic"]
-__license__ = "GNU General Public License (GPL)"
-__version__ = "1.0.0"
-__maintainer__ = "Vladimir Roncevic"
-__email__ = "elektron.ronca@gmail.com"
-__status__ = "Updated"
+__author__ = 'Vladimir Roncevic'
+__copyright__ = 'Copyright 2017, Free software to use and distributed it.'
+__credits__ = ['Vladimir Roncevic']
+__license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
+__version__ = '1.2.0'
+__maintainer__ = 'Vladimir Roncevic'
+__email__ = 'elektron.ronca@gmail.com'
+__status__ = 'Updated'
 
 
-class WriteTemplate(object):
-    """
-        Define class WriteTemplate with atribute(s) and method(s).
-        Write a template content with parameters to a file.
+class WriteTemplate(FileChecking):
+    '''
+        Defined class WriteTemplate with atribute(s) and method(s).
+        Created API for writing a template content with parameters to a file.
         It defines:
 
             :attributes:
-                | __slots__ - Setting class slots
-                | VERBOSE - Console text indicator for current process-phase
+                | GEN_VERBOSE - console text indicator for process-phase.
+                | __check_setup - check setup status.
             :methods:
-                | __init__ - Initial constructor
-                | get_check_setup - Getter for checking status
-                | write - Write a template content with parameters to a file
-    """
+                | __init__ - initial constructor.
+                | get_check_setup - getter for checking status.
+                | write - write a template content with parameters to a file.
+                | __str__ - dunder method for WriteTemplate.
+    '''
 
-    __slots__ = ('VERBOSE', '__check_setup')
-    VERBOSE = 'GEN_PY_MODULE::MODULE::WRITE_TEMPLATE'
+    GEN_VERBOSE = 'GEN_PY_MODULE::MODULE::WRITE_TEMPLATE'
 
     def __init__(self, verbose=False):
-        """
-            Initial constructor.
+        '''
+           Initial constructor.
 
-            :param verbose: Enable/disable verbose option
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :exceptions: None
-        """
-        verbose_message(WriteTemplate.VERBOSE, verbose, 'Initial writer')
+        '''
+        FileChecking.__init__(self, verbose=verbose)
+        verbose_message(WriteTemplate.GEN_VERBOSE, verbose, 'init writer')
         self.__check_setup = False
 
     def get_check_setup(self):
-        """
+        '''
             Getter for checking status.
 
-            :return: Checked status
+            :return: checked status True (checked and ok) | False.
             :rtype: <bool>
             :exceptions: None
-        """
+        '''
         return self.__check_setup
 
     def write(self, module_content, module_name, module_type, verbose=False):
-        """
+        '''
             Write a template content with parameters to a file.
 
-            :param module_content: Template content
+            :param module_content: template content.
             :type module_content: <str>
-            :param module_name: File name
+            :param module_name: file name.
             :type module_name: <str>
-            :param module_type: Type of module
-            :type module_type: <str>
-            :param verbose: Enable/disable verbose option
+            :param module_type: type of module.
+            :type module_type: <int>
+            :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: Boolean status
+            :return: boolean status True (success) | False.
             :rtype: <bool>
-            :exceptions: ATSBadCallError | ATSTypeError
-        """
-        status = False
-        verbose_message(WriteTemplate.VERBOSE, verbose, 'Write template')
-        module_content_txt = 'Argument: expected module_content <str> object'
-        module_content_msg = "{0} {1} {2}".format(
-            'def', stack()[0][3], module_content_txt
-        )
-        module_name_txt = 'Argument: expected module_name <str> object'
-        module_name_msg = "{0} {1} {2}".format(
-            'def', stack()[0][3], module_name_txt
-        )
-        module_type_txt = 'Argument: expected module_type <str> object'
-        module_type_msg = "{0} {1} {2}".format(
-            'def', stack()[0][3], module_type_txt
-        )
-        if module_content is None or not module_content:
-            raise ATSBadCallError(module_content_msg)
-        if not isinstance(module_content, str):
-            raise ATSTypeError(module_content_msg)
-        if module_name is None or not module_name:
-            raise ATSBadCallError(module_name_msg)
-        if not isinstance(module_name, str):
-            raise ATSTypeError(module_name_msg)
-        if module_type is None or not module_type:
-            raise ATSBadCallError(module_type_msg)
-        if not isinstance(module_type, int):
-            raise ATSTypeError(module_type_msg)
+            :exceptions: ATSTypeError | ATSBadCallError
+        '''
+        checker, error, status = ATSChecker(), None, False
+        error, status = checker.check_params([
+            ('str:module_content', module_content),
+            ('str:module_name', module_name),
+            ('int:module_type', module_type)
+        ])
+        if status == ATSChecker.TYPE_ERROR:
+            raise ATSTypeError(error)
+        if status == ATSChecker.VALUE_ERROR:
+            raise ATSBadCallError(error)
+        status, template = False, None
         self.__check_setup = True
-        module_file_name = "{0}/{1}".format(
+        module_file_name = '{0}/{1}'.format(
             getcwd(), ModuleSelector.format_name(module_name, module_type)
         )
         template = Template(module_content)
@@ -136,13 +123,30 @@ class WriteTemplate(object):
                 module_file.write(
                     template.substitute(
                         {
-                            "mod": "{0}".format(module_name),
-                            "modlc": "{0}".format(module_name.lower()),
-                            "date": "{0}".format(date.today()),
-                            "year": "{0}".format(date.today().year)
+                            'mod': '{0}'.format(module_name),
+                            'modlc': '{0}'.format(module_name.lower()),
+                            'date': '{0}'.format(date.today()),
+                            'year': '{0}'.format(date.today().year)
                         }
                     )
                 )
                 chmod(module_file_name, 0o666)
-                status = True
-        return True if status else False
+                self.check_path(module_file_name, verbose=verbose)
+                self.check_mode('w', verbose=verbose)
+                self.check_format(module_file_name, 'py',verbose=verbose)
+                if self.is_file_ok():
+                    status = True
+        return status
+
+    def __str__(self):
+        '''
+            Dunder method for WriteTemplate.
+
+            :return: object in a human-readable format.
+            :rtype: <str>
+            :exceptions: None
+        '''
+        return '{0} ({1}, {2})'.format(
+            self.__class__.__name__, FileChecking.__str__(self),
+            str(self.__check_setup)
+        )

@@ -51,12 +51,25 @@ To install **gen_py_module** type the following:
 
     tar xvzf gen_py_module-x.y.z.tar.gz
     cd gen_py_module-x.y.z/
+    # python2
     pip install -r requirements.txt
     python setup.py install_lib
-    python setup.py install_egg_info
     python setup.py install_data
+    python setup.py install_egg_info
+    # pyton3
+    pip3 install -r requirements.txt
+    python3 setup.py install_lib
+    python3 setup.py install_data
+    python3 setup.py install_egg_info
 
-You can use Docker to create image/container.
+You can use Docker to create image/container, or You can use pip to install:
+
+.. code-block:: bash
+
+    # pyton2
+    pip install gen-py-module
+    # pyton3
+    pip3 install gen-py-module
 
 |GitHub docker checker|
 
@@ -77,8 +90,8 @@ Base flow of generation process:
 
 .. image:: https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/gen_py_module_flow.png
 
-Library structure
-------------------
+Tool structure
+---------------
 
 **gen_py_module** is based on OOP:
 
@@ -86,7 +99,7 @@ Code structure:
 
 .. code-block:: bash
 
-    .
+    gen_py_module/
     ├── conf/
     │   ├── gen_py_module.cfg
     │   ├── gen_py_module_util.cfg
@@ -100,7 +113,6 @@ Code structure:
     ├── log/
     │   └── gen_py_module.log
     ├── module/
-    │   ├── gen_module.py
     │   ├── __init__.py
     │   ├── module_selector.py
     │   ├── read_template.py
