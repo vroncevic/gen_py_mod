@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -80,7 +80,7 @@ class WriteTemplate(FileChecking):
         '''
             Getter for checking status.
 
-            :return: checked status True (checked and ok) | False.
+            :return: boolean status, True (checked and ok) | False.
             :rtype: <bool>
             :exceptions: None
         '''
@@ -98,7 +98,7 @@ class WriteTemplate(FileChecking):
             :type module_type: <int>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: boolean status True (success) | False.
+            :return: boolean status, True (success) | False.
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
