@@ -38,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -104,7 +104,7 @@ class GenModule:
             :type module_name: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: boolean status True (success) | False.
+            :return: boolean status, True (success) | False.
             :rtype: <bool>
             :exceptions: ATSTypeError | ATSBadCallError
         '''
@@ -117,7 +117,7 @@ class GenModule:
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
         verbose_message(
-            GenModule.GEN_VERBOSE, verbose, 'Generating module', module_name
+            GenModule.GEN_VERBOSE, verbose, 'generating module', module_name
         )
         module_type = ModuleSelector.choose_module()
         if module_type != ModuleSelector.Cancel:

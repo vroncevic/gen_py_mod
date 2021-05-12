@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.2.0'
+__version__ = '1.3.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -90,7 +90,7 @@ class GenPyModule(CfgCLI):
         )
         if self.tool_operational:
             self.add_new_option(
-                GenPyModule.OPS[0], GenPyModule.OPS[1], dest='mod',
+                GenPyModule.OPS[0], GenPyModule.OPS[1], dest='gen',
                 help='generate python module'
             )
             self.add_new_option(
@@ -108,7 +108,7 @@ class GenPyModule(CfgCLI):
 
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
-            :return: boolean value True (success) | False.
+            :return: boolean status, True (success) | False.
             :rtype: <bool>
             :exceptions: None
         '''
@@ -122,27 +122,27 @@ class GenPyModule(CfgCLI):
             else:
                 sys.argv.append('-h')
             args = self.parse_args(sys.argv[1:])
-            target_module = '{0}.py'.format(getattr(args, 'mod')).lower()
+            target_module = '{0}.py'.format(getattr(args, 'gen')).lower()
             current_dir = getcwd()
             mod_path = '{0}/{1}'.format(current_dir, target_module)
             mod_exists = Path(mod_path).exists()
             if not mod_exists:
-                if bool(getattr(args, 'mod')):
+                if bool(getattr(args, 'gen')):
                     generator = GenModule(verbose=getattr(args, 'verbose'))
                     print(
                         '{0} {1} [{2}]'.format(
                             '[{0}]'.format(GenPyModule.GEN_VERBOSE),
-                            'generating python module', getattr(args, 'mod')
+                            'generating python module', getattr(args, 'gen')
                         )
                     )
                     status = generator.gen_module(
-                        '{0}'.format(getattr(args, 'mod'))
+                        '{0}'.format(getattr(args, 'gen'))
                     )
                     if status:
                         success_message(GenPyModule.GEN_VERBOSE, 'done\n')
                         self.logger.write_log(
                             '{0} {1} done'.format(
-                                'generating module', getattr(args, 'mod')
+                                'generating module', getattr(args, 'gen')
                             ), ATSLogger.ATS_INFO
                         )
                     else:
