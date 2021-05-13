@@ -40,7 +40,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -86,7 +86,7 @@ class WriteTemplate(FileChecking):
         '''
         return self.__check_setup
 
-    def write(self, module_content, module_name, module_type, verbose=False):
+    def write(self, module_content, module_name, verbose=False):
         '''
             Write a template content with parameters to a file.
 
@@ -94,8 +94,6 @@ class WriteTemplate(FileChecking):
             :type module_content: <str>
             :param module_name: file name.
             :type module_name: <str>
-            :param module_type: type of module.
-            :type module_type: <int>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :return: boolean status, True (success) | False.
@@ -105,8 +103,7 @@ class WriteTemplate(FileChecking):
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([
             ('str:module_content', module_content),
-            ('str:module_name', module_name),
-            ('int:module_type', module_type)
+            ('str:module_name', module_name)
         ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
@@ -114,9 +111,7 @@ class WriteTemplate(FileChecking):
             raise ATSBadCallError(error)
         status, template = False, None
         self.__check_setup = True
-        module_file_name = '{0}/{1}'.format(
-            getcwd(), ModuleSelector.format_name(module_name, module_type)
-        )
+        module_file_name = '{0}/{1}.py'.format(getcwd(), module_name)
         template = Template(module_content)
         if template:
             with open(module_file_name, 'w') as module_file:

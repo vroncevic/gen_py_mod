@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                1.3.0
+                1.4.0
               </div>
             
           
@@ -183,6 +183,7 @@
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.checker</span> <span class="kn">import</span> <span class="n">ATSChecker</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.console_io.error</span> <span class="kn">import</span> <span class="n">error_message</span>
+    <span class="kn">from</span> <span class="nn">ats_utilities.console_io.verbose</span> <span class="kn">import</span> <span class="n">verbose_message</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_type_error</span> <span class="kn">import</span> <span class="n">ATSTypeError</span>
     <span class="kn">from</span> <span class="nn">ats_utilities.exceptions.ats_bad_call_error</span> <span class="kn">import</span> <span class="n">ATSBadCallError</span>
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">ats_error_message</span><span class="p">:</span>
@@ -193,7 +194,7 @@
 <span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, Free software to use and distributed it.&#39;</span>
 <span class="n">__credits__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.3.0&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.4.0&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
@@ -207,13 +208,6 @@
 
 <span class="sd">            :attributes:</span>
 <span class="sd">                | GEN_VERBOSE - console text indicator for process-phase.</span>
-<span class="sd">                | Empty  - 0 Empty module.</span>
-<span class="sd">                | Main   - 1 Main module.</span>
-<span class="sd">                | Class  - 2 Class module.</span>
-<span class="sd">                | NotImp - 3 Not implemented (Abstract) class module.</span>
-<span class="sd">                | ABC    - 4 ABC abstract module.</span>
-<span class="sd">                | Cancel - 5 Cancel option.</span>
-<span class="sd">                | MODULES - dictionary with option/description.</span>
 <span class="sd">            :methods:</span>
 <span class="sd">                | choose_module - selecting type of module.</span>
 <span class="sd">                | format_name - formatting name for file module.</span>
@@ -221,65 +215,72 @@
 <span class="sd">    &#39;&#39;&#39;</span>
 
     <span class="n">GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;GEN_PY_MODULE::MODULE::MODULE_SELECTOR&#39;</span>
-    <span class="n">Empty</span><span class="p">,</span> <span class="n">Main</span><span class="p">,</span> <span class="n">Class</span><span class="p">,</span> <span class="n">NotImp</span><span class="p">,</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">Cancel</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-    <span class="n">MODULES</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="n">Empty</span> <span class="p">:</span> <span class="s1">&#39;Empty module&#39;</span><span class="p">,</span>
-        <span class="n">Main</span> <span class="p">:</span> <span class="s1">&#39;Main module&#39;</span><span class="p">,</span>
-        <span class="n">Class</span> <span class="p">:</span> <span class="s1">&#39;Class module&#39;</span><span class="p">,</span>
-        <span class="n">NotImp</span> <span class="p">:</span> <span class="s1">&#39;Abstract base module&#39;</span><span class="p">,</span>
-        <span class="n">ABC</span> <span class="p">:</span> <span class="s1">&#39;Abstract ABC base module&#39;</span><span class="p">,</span>
-        <span class="n">Cancel</span> <span class="p">:</span> <span class="s1">&#39;Cancel&#39;</span>
-    <span class="p">}</span>
 
 <div class="viewcode-block" id="ModuleSelector.choose_module"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector.choose_module">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">choose_module</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">choose_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Selecting type of module for generating process.</span>
+<span class="sd">            Select module type.</span>
 
-<span class="sd">            :return: Module type id.</span>
-<span class="sd">            :rtype: &lt;int&gt;</span>
+<span class="sd">            :param verbose: enable/disable verbose option.</span>
+<span class="sd">            :type verbose: &lt;bool&gt;</span>
+<span class="sd">            :return: project template selected | None.</span>
+<span class="sd">            :rtype: &lt;str&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :exceptions: None</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> module option list:&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39; select module: &#39;</span><span class="p">))</span>
-            <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
-                <span class="n">module_type</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39; select module: &#39;</span><span class="p">))</span>
-            <span class="k">if</span> <span class="n">module_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="n">error_message</span><span class="p">(</span>
-                    <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;not an appropriate choice&#39;</span>
-                <span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">break</span>
-        <span class="k">return</span> <span class="n">module_type</span></div>
-
-<div class="viewcode-block" id="ModuleSelector.format_name"><a class="viewcode-back" href="../../../gen_py_module.module.module_selector.html#gen_py_module.module.module_selector.ModuleSelector.format_name">[docs]</a>    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">format_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">module_type</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">            Formatting name for file module.</span>
-
-<span class="sd">            :param module_name: module name (translate to lower case).</span>
-<span class="sd">            :type module_name: &lt;str&gt;</span>
-<span class="sd">            :param module_type: type of module (empty/class/main/NotImpl/ABC).</span>
-<span class="sd">            :type module_type: &lt;int&gt;</span>
-<span class="sd">            :return: file name with extension.</span>
-<span class="sd">            :rtype: &lt;str&gt;</span>
-<span class="sd">            :exceptions: ATSTypeError | ATSBadCallError</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="n">checker</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ATSChecker</span><span class="p">(),</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">False</span>
-        <span class="n">error</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">checker</span><span class="o">.</span><span class="n">check_params</span><span class="p">([</span>
-            <span class="p">(</span><span class="s1">&#39;str:module_name&#39;</span><span class="p">,</span> <span class="n">module_name</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;int:module_type&#39;</span><span class="p">,</span> <span class="n">module_type</span><span class="p">)</span>
-        <span class="p">])</span>
-        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">TYPE_ERROR</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSTypeError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">ATSChecker</span><span class="o">.</span><span class="n">VALUE_ERROR</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">ATSBadCallError</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">module_type</span> <span class="o">==</span> <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">MODULES</span><span class="p">[</span><span class="n">ModuleSelector</span><span class="o">.</span><span class="n">Main</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">_run</span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s1">&#39;.py&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{0}{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">module_name</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s1">&#39;.py&#39;</span><span class="p">)</span></div>
+        <span class="n">template_target</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+            <span class="n">types</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;py_module&#39;</span><span class="p">]</span>
+            <span class="n">pro_types_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">pro_type</span> <span class="ow">in</span> <span class="n">types</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">project_type</span><span class="p">,</span> <span class="n">project_info</span> <span class="ow">in</span> <span class="n">pro_type</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">project_type</span> <span class="o">!=</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">types</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pro_type</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                <span class="n">project_info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;info&#39;</span><span class="p">]</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                        <span class="n">verbose_message</span><span class="p">(</span>
+                            <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
+                            <span class="s1">&#39;to be processed template&#39;</span><span class="p">,</span>
+                            <span class="n">project_info</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">types</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">pro_type</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Cancel&#39;</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">input_type</span> <span class="o">=</span> <span class="n">raw_input</span><span class="p">(</span><span class="s1">&#39; select project type: &#39;</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+                        <span class="n">input_type</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39; select project type: &#39;</span><span class="p">)</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pro_types_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+                    <span class="n">options</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pro_types_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">types</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;cancel&#39;</span><span class="p">:</span>
+                                <span class="n">template_target</span> <span class="o">=</span> <span class="s1">&#39;cancel&#39;</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">template_target</span> <span class="o">=</span> <span class="n">types</span><span class="p">[</span>
+                                    <span class="nb">int</span><span class="p">(</span><span class="n">input_type</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+                                <span class="p">][</span><span class="n">target</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;template&#39;</span><span class="p">]</span>
+                        <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">error_message</span><span class="p">(</span>
+                        <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="s1">&#39;not an appropriate choice&#39;</span>
+                    <span class="p">)</span>
+            <span class="n">verbose_message</span><span class="p">(</span>
+                <span class="n">ModuleSelector</span><span class="o">.</span><span class="n">GEN_VERBOSE</span><span class="p">,</span> <span class="n">verbose</span><span class="p">,</span>
+                <span class="s1">&#39;selected&#39;</span><span class="p">,</span> <span class="n">template_target</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">template_target</span></div>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>

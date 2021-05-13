@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Define class ${mod} with attribute(s) and method(s).
+     Defined class ${mod} with attribute(s) and method(s).
 '''
 
 __author__ = 'Vladimir Roncevic'
@@ -31,7 +31,7 @@ __status__ = 'Updated'
 
 class $mod(object):
     '''
-        Define class $mod with attribute(s) and method(s).
+        Defined class $mod with attribute(s) and method(s).
         Abstract class $mod.
         It defines:
 

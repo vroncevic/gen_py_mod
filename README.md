@@ -100,6 +100,7 @@ gen_py_module/
 ├── conf/
 │   ├── gen_py_module.cfg
 │   ├── gen_py_module_util.cfg
+│   ├── project.yaml
 │   └── template/
 │       ├── abstract_abc_class.template
 │       ├── abstract_base_class.template

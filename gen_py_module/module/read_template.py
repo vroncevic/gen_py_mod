@@ -39,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -54,7 +54,6 @@ class ReadTemplate(FileChecking):
             :attributes:
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | TEMPLATE_DIR - prefix path to templates.
-                | TEMPLATES - modules (python templates).
                 | __template_dir - template dir path.
             :methods:
                 | __init__ - initial constructor.
@@ -65,13 +64,6 @@ class ReadTemplate(FileChecking):
 
     GEN_VERBOSE = 'GEN_PY_MODULE::MODULE::READ_TEMPLATE'
     TEMPLATE_DIR = '/../conf/template/'
-    TEMPLATES = {
-        ModuleSelector.Empty: 'empty.template',
-        ModuleSelector.Main: 'main.template',
-        ModuleSelector.Class: 'class.template',
-        ModuleSelector.NotImp: 'abstract_base_class.template',
-        ModuleSelector.ABC: 'abstract_abc_class.template'
-    }
 
     def __init__(self, verbose=False):
         '''
@@ -102,12 +94,12 @@ class ReadTemplate(FileChecking):
         '''
         return self.__template
 
-    def read(self, module_type, verbose=False):
+    def read(self, template_name, verbose=False):
         '''
             Read a template and return a content or None.
 
-            :param module_type: file name.
-            :type module_type: <int>
+            :param template_name: template file name.
+            :type template_name: <str>
             :param verbose: enable/disable verbose option.
             :type verbose: <bool>
             :return: template module content | None.
@@ -116,16 +108,14 @@ class ReadTemplate(FileChecking):
         '''
         checker, error, status = ATSChecker(), None, False
         error, status = checker.check_params([
-            ('int:module_type', module_type)
+            ('str:template_name', template_name)
         ])
         if status == ATSChecker.TYPE_ERROR:
             raise ATSTypeError(error)
         if status == ATSChecker.VALUE_ERROR:
             raise ATSBadCallError(error)
         module_content, status, file_path = None, False, None
-        file_path = '{0}{1}'.format(
-            self.__template_dir, ReadTemplate.TEMPLATES[module_type]
-        )
+        file_path = '{0}{1}'.format(self.__template_dir, template_name)
         self.check_path(file_path, verbose=verbose)
         self.check_mode('r', verbose=verbose)
         self.check_format(file_path, 'template',verbose=verbose)
