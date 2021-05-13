@@ -23,11 +23,14 @@
 import sys
 
 try:
+    from pathlib import Path
     from gen_py_module.module.read_template import ReadTemplate
     from gen_py_module.module.write_template import WriteTemplate
     from gen_py_module.module.module_selector import ModuleSelector
     from ats_utilities.checker import ATSChecker
+    from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
+    from ats_utilities.config_io.yaml.yaml2object import Yaml2Object
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
@@ -38,13 +41,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class GenModule:
+class GenModule(FileChecking):
     '''
         Defined class GenModule with attribute(s) and method(s).
         Generate python module by template and parameters.
@@ -52,8 +55,10 @@ class GenModule:
 
             :attributes:
                 | GEN_VERBOSE - console text indicator for process-phase.
+                | PRO_STRUCTURE - project setup (templates).
                 | __reader - reader API.
                 | __writer - writer API.
+                | __config - project setup in dict format.
             :methods:
                 | __init__ - initial constructor.
                 | get_reader - getter for reader object.
@@ -63,6 +68,7 @@ class GenModule:
     '''
 
     GEN_VERBOSE = 'GEN_PY_MODULE::MODULE::GEN_MODULE'
+    PRO_STRUCTURE = '/../conf/project.yaml'
 
     def __init__(self, verbose=False):
         '''
@@ -72,9 +78,23 @@ class GenModule:
             :type verbose: <bool>
             :exceptions: None
         '''
+        FileChecking.__init__(self, verbose=verbose)
         verbose_message(GenModule.GEN_VERBOSE, verbose, 'init generator')
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
+        project = '{0}{1}'.format(
+            Path(__file__).parent, GenModule.PRO_STRUCTURE
+        )
+        self.check_path(file_path=project, verbose=verbose)
+        self.check_mode(file_mode='r', verbose=verbose)
+        self.check_format(
+            file_path=project, file_format='yaml', verbose=verbose
+        )
+        if self.is_file_ok():
+            yml2obj = Yaml2Object(project)
+            self.__config = yml2obj.read_configuration()
+        else:
+            self.__config = None
 
     def get_reader(self):
         '''
@@ -119,14 +139,16 @@ class GenModule:
         verbose_message(
             GenModule.GEN_VERBOSE, verbose, 'generating module', module_name
         )
-        module_type = ModuleSelector.choose_module()
-        if module_type != ModuleSelector.Cancel:
-            module_content = self.__reader.read(module_type, verbose=verbose)
+        template_name = ModuleSelector.choose_module(
+            self.__config, verbose=verbose
+        )
+        if template_name != 'cancel':
+            module_content = self.__reader.read(template_name, verbose=verbose)
             if module_content:
                 status = self.__writer.write(
-                    module_content, module_name, module_type, verbose=verbose
+                    module_content, module_name, verbose=verbose
                 )
-        elif module_type == ModuleSelector.Cancel:
+        elif template_name == 'cancel':
             status = True
         return status
 

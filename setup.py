@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'GNU General Public License (GPL)'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -100,7 +100,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='gen_py_module',
-    version='1.3.0',
+    version='1.4.0',
     description='Generating PY module',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -117,6 +117,7 @@ setup(
         'gen_py_module': [
             'conf/gen_py_module.cfg',
             'conf/gen_py_module_util.cfg',
+            'conf/project.yaml',
             'conf/template/abstract_abc_class.template',
             'conf/template/abstract_base_class.template',
             'conf/template/class.template',

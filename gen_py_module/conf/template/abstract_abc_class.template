@@ -16,7 +16,7 @@
      You should have received a copy of the GNU General Public License along
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
-     Define class ${mod} with attribute(s) and method(s).
+     Defined class ${mod} with attribute(s) and method(s).
 '''
 
 from abc import ABCMeta, abstractmethod
@@ -33,15 +33,15 @@ __status__ = 'Updated'
 
 class $mod(object):
     '''
-        Define class $mod with attribute(s) and method(s).
+        Defined class $mod with attribute(s) and method(s).
         Abstract class $mod.
         It defines:
             
            :attributes:
                 | None.
            :methods:
-                | __init__ - Initial constructor.
-                | abstract_method - Abstract method.
+                | __init__ - initial constructor.
+                | abstract_method - abstract method.
     '''
 
     __metaclass__ = ABCMeta

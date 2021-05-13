@@ -25,6 +25,7 @@ import sys
 try:
     from ats_utilities.checker import ATSChecker
     from ats_utilities.console_io.error import error_message
+    from ats_utilities.console_io.verbose import verbose_message
     from ats_utilities.exceptions.ats_type_error import ATSTypeError
     from ats_utilities.exceptions.ats_bad_call_error import ATSBadCallError
 except ImportError as ats_error_message:
@@ -35,7 +36,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, Free software to use and distributed it.'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.3.0'
+__version__ = '1.4.0'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -49,13 +50,6 @@ class ModuleSelector:
 
             :attributes:
                 | GEN_VERBOSE - console text indicator for process-phase.
-                | Empty  - 0 Empty module.
-                | Main   - 1 Main module.
-                | Class  - 2 Class module.
-                | NotImp - 3 Not implemented (Abstract) class module.
-                | ABC    - 4 ABC abstract module.
-                | Cancel - 5 Cancel option.
-                | MODULES - dictionary with option/description.
             :methods:
                 | choose_module - selecting type of module.
                 | format_name - formatting name for file module.
@@ -63,65 +57,72 @@ class ModuleSelector:
     '''
 
     GEN_VERBOSE = 'GEN_PY_MODULE::MODULE::MODULE_SELECTOR'
-    Empty, Main, Class, NotImp, ABC, Cancel = range(6)
-    MODULES = {
-        Empty : 'Empty module',
-        Main : 'Main module',
-        Class : 'Class module',
-        NotImp : 'Abstract base module',
-        ABC : 'Abstract ABC base module',
-        Cancel : 'Cancel'
-    }
 
     @classmethod
-    def choose_module(cls):
+    def choose_module(self, config, verbose=False):
         '''
-            Selecting type of module for generating process.
+            Select module type.
 
-            :return: Module type id.
-            :rtype: <int>
+            :param verbose: enable/disable verbose option.
+            :type verbose: <bool>
+            :return: project template selected | None.
+            :rtype: <str> | <NoneType>
             :exceptions: None
         '''
-        print('\n module option list:')
-        for key in sorted(ModuleSelector.MODULES):
-            print('  {0} {1}'.format(key, ModuleSelector.MODULES[key]))
-        while True:
-            try:
-                module_type = int(raw_input(' select module: '))
-            except NameError:
-                module_type = int(input(' select module: '))
-            if module_type not in ModuleSelector.MODULES.keys():
-                error_message(
-                    ModuleSelector.GEN_VERBOSE, 'not an appropriate choice'
-                )
-            else:
-                break
-        return module_type
-
-    @classmethod
-    def format_name(cls, module_name, module_type):
-        '''
-            Formatting name for file module.
-
-            :param module_name: module name (translate to lower case).
-            :type module_name: <str>
-            :param module_type: type of module (empty/class/main/NotImpl/ABC).
-            :type module_type: <int>
-            :return: file name with extension.
-            :rtype: <str>
-            :exceptions: ATSTypeError | ATSBadCallError
-        '''
-        checker, error, status = ATSChecker(), None, False
-        error, status = checker.check_params([
-            ('str:module_name', module_name), ('int:module_type', module_type)
-        ])
-        if status == ATSChecker.TYPE_ERROR:
-            raise ATSTypeError(error)
-        if status == ATSChecker.VALUE_ERROR:
-            raise ATSBadCallError(error)
-        if module_type == ModuleSelector.MODULES[ModuleSelector.Main]:
-            return '{0}_run{1}'.format(module_name.lower(), '.py')
-        return '{0}{1}'.format(module_name.lower(), '.py')
+        template_target = None
+        if bool(config):
+            types = config['py_module']
+            pro_types_len = len(types)
+            for pro_type in types:
+                for project_type, project_info in pro_type.items():
+                    if project_type != 'cancel':
+                        print(
+                            '{0} {1}'.format(
+                                types.index(pro_type) + 1,
+                                project_info[0]['info']
+                            )
+                        )
+                        verbose_message(
+                            ModuleSelector.GEN_VERBOSE, verbose,
+                            'to be processed template',
+                            project_info[1]['template']
+                        )
+                    else:
+                        print(
+                            '{0} {1}'.format(
+                                types.index(pro_type) + 1, 'Cancel'
+                            )
+                        )
+            while True:
+                try:
+                    try:
+                        input_type = raw_input(' select project type: ')
+                    except NameError:
+                        input_type = input(' select project type: ')
+                    options = xrange(1, pro_types_len + 1, 1)
+                except NameError:
+                    options = range(1, pro_types_len + 1, 1)
+                try:
+                    if int(input_type) in list(options):
+                        for target in types[int(input_type) - 1].keys():
+                            if target == 'cancel':
+                                template_target = 'cancel'
+                            else:
+                                template_target = types[
+                                    int(input_type) - 1
+                                ][target][1]['template']
+                        break
+                    else:
+                        raise ValueError
+                except ValueError:
+                    error_message(
+                        ModuleSelector.GEN_VERBOSE, 'not an appropriate choice'
+                    )
+            verbose_message(
+                ModuleSelector.GEN_VERBOSE, verbose,
+                'selected', template_target
+            )
+        return template_target
 
     def __str__(self):
         '''

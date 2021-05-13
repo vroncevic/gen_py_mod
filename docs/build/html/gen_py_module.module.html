@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.3.0
+                1.4.0
               </div>
             
           
@@ -205,7 +205,8 @@ Generate python module by template and parameters.</dd>
 <dl class="class">
 <dt id="gen_py_module.module.GenModule">
 <em class="property">class </em><code class="descclassname">gen_py_module.module.</code><code class="descname">GenModule</code><span class="sig-paren">(</span><em>verbose=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gen_py_module/module.html#GenModule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gen_py_module.module.GenModule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defined class GenModule with attribute(s) and method(s).
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ats_utilities.config_io.base_check.FileChecking</span></code></p>
+<p>Defined class GenModule with attribute(s) and method(s).
 Generate python module by template and parameters.
 It defines:</p>
 <blockquote>
@@ -215,8 +216,10 @@ It defines:</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">attributes:</th><td class="field-body"><div class="first last line-block">
 <div class="line">GEN_VERBOSE - console text indicator for process-phase.</div>
+<div class="line">PRO_STRUCTURE - project setup (templates).</div>
 <div class="line">__reader - reader API.</div>
 <div class="line">__writer - writer API.</div>
+<div class="line">__config - project setup in dict format.</div>
 </div>
 </td>
 </tr>
@@ -235,6 +238,16 @@ It defines:</p>
 <dl class="attribute">
 <dt id="gen_py_module.module.GenModule.GEN_VERBOSE">
 <code class="descname">GEN_VERBOSE</code><em class="property"> = 'GEN_PY_MODULE::MODULE::GEN_MODULE'</em><a class="headerlink" href="#gen_py_module.module.GenModule.GEN_VERBOSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gen_py_module.module.GenModule.PRO_STRUCTURE">
+<code class="descname">PRO_STRUCTURE</code><em class="property"> = '/../conf/project.yaml'</em><a class="headerlink" href="#gen_py_module.module.GenModule.PRO_STRUCTURE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="gen_py_module.module.GenModule.VERBOSE">
+<code class="descname">VERBOSE</code><em class="property"> = 'ATS_UTILITIES'</em><a class="headerlink" href="#gen_py_module.module.GenModule.VERBOSE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
