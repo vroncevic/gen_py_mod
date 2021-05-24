@@ -26,10 +26,10 @@ from os.path import abspath, dirname, join, exists
 from setuptools import setup
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, Free software to use and distributed it.'
+__copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_py_module'
 __credits__ = ['Vladimir Roncevic']
-__license__ = 'GNU General Public License (GPL)'
-__version__ = '1.4.0'
+__license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
+__version__ = '1.4.1'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -100,7 +100,7 @@ APPROVED_LICENSES = [
 PYP_CLASSIFIERS = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='gen_py_module',
-    version='1.4.0',
+    version='1.4.1',
     description='Generating PY module',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -126,11 +126,9 @@ setup(
             'log/gen_py_module.log'
         ]
     },
-    data_files=[
-        (
-            '/usr/local/bin/', [
-                '{0}{1}'.format(TOOL_DIR, 'run/gen_py_module_run.py')
-            ]
-        )
-    ]
+    data_files=[(
+        '/usr/local/bin/', [
+            '{0}{1}'.format(TOOL_DIR, 'run/gen_py_module_run.py')
+        ]
+    )]
 )
