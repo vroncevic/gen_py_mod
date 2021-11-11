@@ -26,7 +26,6 @@ from os import getcwd, chmod
 from string import Template
 
 try:
-    from gen_py_module.module.module_selector import ModuleSelector
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
@@ -40,7 +39,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.4.1'
+__version__ = '1.4.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -128,7 +127,7 @@ class WriteTemplate(FileChecking):
                 chmod(module_file_name, 0o666)
                 self.check_path(module_file_name, verbose=verbose)
                 self.check_mode('w', verbose=verbose)
-                self.check_format(module_file_name, 'py',verbose=verbose)
+                self.check_format(module_file_name, 'py', verbose=verbose)
                 if self.is_file_ok():
                     status = True
         return status
