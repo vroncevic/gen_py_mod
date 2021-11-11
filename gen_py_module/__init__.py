@@ -24,6 +24,7 @@ import sys
 from os import getcwd
 
 try:
+    from six import add_metaclass
     from pathlib import Path
     from gen_py_module.module import GenModule
     from ats_utilities.logging import ATSLogger
@@ -40,12 +41,13 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.4.1'
+__version__ = '1.4.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
+@add_metaclass(CooperativeMeta)
 class GenPyModule(CfgCLI):
     '''
         Defined class GenPyModule with attribute(s) and method(s).
@@ -53,7 +55,6 @@ class GenPyModule(CfgCLI):
         It defines:
 
             :attributes:
-                | __metaclass__ - setting cooperative metaclasses.
                 | GEN_VERBOSE - console text indicator for process-phase.
                 | CONFIG - tool info file path.
                 | LOG - tool log file path.
@@ -65,7 +66,6 @@ class GenPyModule(CfgCLI):
                 | __str__ - dunder method for GenPyModule.
     '''
 
-    __metaclass__ = CooperativeMeta
     GEN_VERBOSE = 'GEN_PY_MODULE'
     CONFIG = '/conf/gen_py_module.cfg'
     LOG = '/log/gen_py_module.log'

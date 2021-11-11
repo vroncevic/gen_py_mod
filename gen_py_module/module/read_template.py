@@ -25,7 +25,6 @@ from os.path import isdir
 
 try:
     from pathlib import Path
-    from gen_py_module.module.module_selector import ModuleSelector
     from ats_utilities.checker import ATSChecker
     from ats_utilities.config_io.base_check import FileChecking
     from ats_utilities.console_io.verbose import verbose_message
@@ -39,7 +38,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
 __credits__ = ['Vladimir Roncevic']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.4.1'
+__version__ = '1.4.2'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -118,7 +117,7 @@ class ReadTemplate(FileChecking):
         file_path = '{0}{1}'.format(self.__template_dir, template_name)
         self.check_path(file_path, verbose=verbose)
         self.check_mode('r', verbose=verbose)
-        self.check_format(file_path, 'template',verbose=verbose)
+        self.check_format(file_path, 'template', verbose=verbose)
         if self.is_file_ok():
             with open(file_path, 'r') as template_file:
                 module_content = template_file.read()
