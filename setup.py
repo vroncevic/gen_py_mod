@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-"""
+'''
  Module
      setup.py
  Copyright
@@ -18,7 +18,7 @@
      with this program. If not, see <http://www.gnu.org/licenses/>.
  Info
      Define setup for tool gen_py_module.
-"""
+'''
 
 from __future__ import print_function
 import sys
@@ -115,6 +115,7 @@ setup(
     install_requires=['ats-utilities'],
     package_data = {
         'gen_py_module': [
+            'conf/gen_py_module.logo',
             'conf/gen_py_module.cfg',
             'conf/gen_py_module_util.cfg',
             'conf/project.yaml',

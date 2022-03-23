@@ -21,9 +21,9 @@
 '''
 
 import sys
+from os.path import dirname, realpath
 
 try:
-    from pathlib import Path
     from gen_py_module.module.read_template import ReadTemplate
     from gen_py_module.module.write_template import WriteTemplate
     from gen_py_module.module.module_selector import ModuleSelector
@@ -83,7 +83,7 @@ class GenModule(FileChecking):
         self.__reader = ReadTemplate(verbose=verbose)
         self.__writer = WriteTemplate(verbose=verbose)
         project = '{0}{1}'.format(
-            Path(__file__).parent, GenModule.PRO_STRUCTURE
+            dirname(realpath(__file__)), GenModule.PRO_STRUCTURE
         )
         self.check_path(file_path=project, verbose=verbose)
         self.check_mode(file_mode='r', verbose=verbose)
