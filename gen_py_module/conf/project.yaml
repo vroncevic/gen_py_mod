@@ -1,19 +1,23 @@
-py_module:
-    - empty:
-        - info: Empty module
-        - template: empty.template
-    - main:
-        - info: Main module
-        - template: main.template
-    - class:
-        - info: Class module
-        - template: class.template
-    - abstract_base:
-        - info: Abstract base module
-        - template: abstract_base_class.template
-    - abstract_abc:
-        - info: Abstract ABC base module
-        - template: abstract_abc_class.template
-    - cancel:
-        - info: null
-        - template: null
+templates:
+  - empty:
+    - empty.template
+  - main:
+    - main.template
+  - class:
+    - class.template
+  - abstract_base:
+    - abstract_base.template
+  - abstract_abc:
+    - abstract_abc.template
+
+modules:
+  - empty:
+    - __init__.py
+  - main:
+    - main.py
+  - class:
+    - class.py
+  - abstract_base:
+    - abstract_base.py
+  - abstract_abc:
+    - abstract_abc.py
