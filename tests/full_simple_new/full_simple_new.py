@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class $Full_simple_new with attribute(s) and method(s).
+    Defines class Full_simple_new with attribute(s) and method(s).
 '''
 
 from typing import List
@@ -31,22 +31,22 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class $Full_simple_new:
+class Full_simple_new:
     '''
-        Defines class $Full_simple_new with attribute(s) and method(s).
-        Simple class $Full_simple_new.
+        Defines class Full_simple_new with attribute(s) and method(s).
+        Simple class Full_simple_new.
 
         It defines:
 
             :attributes:
                 | None.
             :methods:
-                | __init__ - Initials $Full_simple_new constructor.
+                | __init__ - Initials Full_simple_new constructor.
     '''
 
     def __init__(self, verbose: bool = False):
         '''
-            Initials $Full_simple_new constructor.
+            Initials Full_simple_new constructor.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>

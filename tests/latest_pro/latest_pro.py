@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class $Latest_pro with attribute(s) and method(s).
+    Defines class Latest_pro with attribute(s) and method(s).
 '''
 
 from typing import List
@@ -31,22 +31,22 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class $Latest_pro:
+class Latest_pro:
     '''
-        Defines class $Latest_pro with attribute(s) and method(s).
-        Simple class $Latest_pro.
+        Defines class Latest_pro with attribute(s) and method(s).
+        Simple class Latest_pro.
 
         It defines:
 
             :attributes:
                 | None.
             :methods:
-                | __init__ - Initials $Latest_pro constructor.
+                | __init__ - Initials Latest_pro constructor.
     '''
 
     def __init__(self, verbose: bool = False):
         '''
-            Initials $Latest_pro constructor.
+            Initials Latest_pro constructor.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>

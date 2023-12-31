@@ -16,7 +16,7 @@ Copyright
     You should have received a copy of the GNU General Public License along
     with this program. If not, see <http://www.gnu.org/licenses/>.
 Info
-    Defines class $Simple_write with attribute(s) and method(s).
+    Defines class Simple_write with attribute(s) and method(s).
 '''
 
 from typing import List
@@ -31,22 +31,22 @@ __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 
-class $Simple_write:
+class Simple_write:
     '''
-        Defines class $Simple_write with attribute(s) and method(s).
-        Simple class $Simple_write.
+        Defines class Simple_write with attribute(s) and method(s).
+        Simple class Simple_write.
 
         It defines:
 
             :attributes:
                 | None.
             :methods:
-                | __init__ - Initials $Simple_write constructor.
+                | __init__ - Initials Simple_write constructor.
     '''
 
     def __init__(self, verbose: bool = False):
         '''
-            Initials $Simple_write constructor.
+            Initials Simple_write constructor.
 
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>

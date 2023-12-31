@@ -113,7 +113,7 @@ class WriteTemplate(FileCheck):
             with open(module_path, 'w', encoding='utf-8') as module_file:
                 module_file.write(template.substitute({
                     'MOD': pro_name,
-                    'MODCL': f'${pro_name.capitalize()}',
+                    'MODCL': f'{pro_name.capitalize()}',
                     'PRO': pro_name,
                     'YEAR': f'{date.today().year}'
                 }))
