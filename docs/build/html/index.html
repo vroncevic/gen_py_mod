@@ -28,6 +28,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="modules.html" title="gen_py_module"
              accesskey="N">next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">gen_py_module https://github.com/vroncevic/gen_py_module/releases documentation</a> &#187;</li>
@@ -47,7 +50,7 @@
 <p>The README is used to introduce the modules and provide instructions on
 how to install the modules, any machine dependencies it may have and any
 other information that should be provided before the modules are installed.</p>
-<p><a class="reference external" href="https://github.com/vroncevic/gen_py_module/workflows/Python%20package%20gen_py_module/badge.svg?branch=master"><img alt="Python package" src="https://github.com/vroncevic/gen_py_module/workflows/Python%20package%20gen_py_module/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/gen_py_module.svg" /></a> <a class="reference external" href="https://gen_py_module.readthedocs.io/projects/gen_py_module/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/gen_py_module/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/gen_py_module.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_python_checker.yml"><img alt="gen_py_module python checker" src="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_python_checker.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_package.yml"><img alt="gen_py_module python package" src="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_package_checker.yml/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/issues"><img alt="github issues" src="https://img.shields.io/github/issues/vroncevic/gen_py_module.svg" /></a> <a class="reference external" href="https://gen-py-module.readthedocs.io/en/latest/?badge=latest"><img alt="documentation status" src="https://readthedocs.org/projects/gen_py_module/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/graphs/contributors"><img alt="github contributors" src="https://img.shields.io/github/contributors/vroncevic/gen_py_module.svg" /></a></p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul class="current">
@@ -55,10 +58,13 @@ other information that should be provided before the modules are installed.</p>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">gen_py_module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gen_py_module.html">gen_py_module package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gen_py_module.html#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="gen_py_module.module.html">gen_py_module.module package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gen_py_module.pro.html">gen_py_module.pro package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="gen_py_module.html#module-contents">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gen_py_module.html#module-gen_py_module">Module contents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gen_py_module.html#gen_py_module.GenPyModule"><code class="docutils literal notranslate"><span class="pre">GenPyModule</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -68,31 +74,30 @@ other information that should be provided before the modules are installed.</p>
 </section>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://github.com/vroncevic/gen_py_module/workflows/Install%20Python2%20Package%20gen_py_module/badge.svg?branch=master"><img alt="Install Python2 Package" src="https://github.com/vroncevic/gen_py_module/workflows/Install%20Python2%20Package%20gen_py_module/badge.svg" /></a> <a class="reference external" href="https://github.com/vroncevic/gen_py_module/workflows/Install%20Python3%20Package%20gen_py_module/badge.svg?branch=master"><img alt="Install Python3 Package" src="https://github.com/vroncevic/gen_py_module/workflows/Install%20Python3%20Package%20gen_py_module/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_python3_build.yml"><img alt="gen_py_module python3 build" src="https://github.com/vroncevic/gen_py_module/actions/workflows/gen_py_module_python3_build.yml/badge.svg" /></a></p>
 <p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/gen_py_module/releases">page</a> download and extract release archive.</p>
 <p>To install <strong>gen_py_module</strong> type the following</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar<span class="w"> </span>xvzf<span class="w"> </span>gen_py_module-x.y.z.tar.gz
 <span class="nb">cd</span><span class="w"> </span>gen_py_module-x.y.z/
-<span class="c1"># python2</span>
-pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-python<span class="w"> </span>setup.py<span class="w"> </span>install_lib
-python<span class="w"> </span>setup.py<span class="w"> </span>install_data
-python<span class="w"> </span>setup.py<span class="w"> </span>install_egg_info
-<span class="c1"># pyton3</span>
+<span class="c1"># python3</span>
+wget<span class="w"> </span>https://bootstrap.pypa.io/get-pip.py
+python3<span class="w"> </span>get-pip.py
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>setuptools
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>build
 pip3<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-python3<span class="w"> </span>setup.py<span class="w"> </span>install_lib
-python3<span class="w"> </span>setup.py<span class="w"> </span>install_data
-python3<span class="w"> </span>setup.py<span class="w"> </span>install_egg_info
+python3<span class="w"> </span>-m<span class="w"> </span>build<span class="w"> </span>--no-isolation<span class="w"> </span>--wheel
+pip3<span class="w"> </span>install<span class="w"> </span>./dist/gen_py_module-*-py3-none-any.whl
+rm<span class="w"> </span>-f<span class="w"> </span>get-pip.py
+chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>/usr/local/lib/python3.10/dist-packages/usr/local/bin/gen_py_module_run.py
+ln<span class="w"> </span>-s<span class="w"> </span>/usr/local/lib/python3.10/dist-packages/usr/local/bin/gen_py_module_run.py<span class="w"> </span>/usr/local/bin/gen_py_module_run.py
 </pre></div>
 </div>
 <p>You can use Docker to create image/container, or You can use pip to install</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyton2</span>
-pip<span class="w"> </span>install<span class="w"> </span>gen-py-module
-<span class="c1"># pyton3</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyton3</span>
 pip3<span class="w"> </span>install<span class="w"> </span>gen-py-module
 </pre></div>
 </div>
-<p><a class="reference external" href="https://github.com/vroncevic/gen_py_module/actions?query=workflow%3A%22gen_py_module+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/gen_py_module/workflows/gen_py_module%20docker%20checker/badge.svg" /></a></p>
 </section>
 <section id="dependencies">
 <h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this heading">¶</a></h1>
@@ -101,50 +106,46 @@ pip3<span class="w"> </span>install<span class="w"> </span>gen-py-module
 <li><p><a class="reference external" href="https://pypi.org/project/ats-utilities/">ats-utilities - Python App/Tool/Script Utilities</a></p></li>
 </ul>
 </section>
-<section id="generation-flow-of-py-module">
-<h1>Generation flow of py module<a class="headerlink" href="#generation-flow-of-py-module" title="Permalink to this heading">¶</a></h1>
-<p>Base flow of generation process</p>
-<img alt="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/gen_py_module_flow.png" src="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/gen_py_module_flow.png" />
-</section>
 <section id="tool-structure">
 <h1>Tool structure<a class="headerlink" href="#tool-structure" title="Permalink to this heading">¶</a></h1>
-<p><strong>gen_py_module</strong> is based on OOP</p>
+<p><strong>gen_py_module</strong> is based on OOP.</p>
 <p>Code structure</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gen_py_module/
-├──<span class="w"> </span>conf/
-│<span class="w">   </span>├──<span class="w"> </span>gen_py_module.logo
-│<span class="w">   </span>├──<span class="w"> </span>gen_py_module.cfg
-│<span class="w">   </span>├──<span class="w"> </span>gen_py_module_util.cfg
-│<span class="w">   </span>├──<span class="w"> </span>project.yaml
-│<span class="w">   </span>└──<span class="w"> </span>template/
-│<span class="w">       </span>├──<span class="w"> </span>abstract_abc_class.template
-│<span class="w">       </span>├──<span class="w"> </span>abstract_base_class.template
-│<span class="w">       </span>├──<span class="w"> </span>class.template
-│<span class="w">       </span>├──<span class="w"> </span>empty.template
-│<span class="w">       </span>└──<span class="w"> </span>main.template
-├──<span class="w"> </span>__init__.py
-├──<span class="w"> </span>log/
-│<span class="w">   </span>└──<span class="w"> </span>gen_py_module.log
-├──<span class="w"> </span>module/
-│<span class="w">   </span>├──<span class="w"> </span>__init__.py
-│<span class="w">   </span>├──<span class="w"> </span>module_selector.py
-│<span class="w">   </span>├──<span class="w"> </span>read_template.py
-│<span class="w">   </span>└──<span class="w"> </span>write_template.py
-└──<span class="w"> </span>run/
-<span class="w">    </span>└──<span class="w"> </span>gen_py_module_run.py
+<span class="w">    </span>├──<span class="w"> </span>conf/
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>gen_py_module.cfg
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>gen_py_module.logo
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>gen_py_module_util.cfg
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>project.yaml
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>template/
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>abstract_abc_class.template
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>abstract_base_class.template
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>class.template
+<span class="w">    </span>│<span class="w">       </span>├──<span class="w"> </span>empty.template
+<span class="w">    </span>│<span class="w">       </span>└──<span class="w"> </span>main.template
+<span class="w">    </span>├──<span class="w"> </span>__init__.py
+<span class="w">    </span>├──<span class="w"> </span>log/
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>gen_py_module.log
+<span class="w">    </span>├──<span class="w"> </span>pro/
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>__init__.py
+<span class="w">    </span>│<span class="w">   </span>├──<span class="w"> </span>read_template.py
+<span class="w">    </span>│<span class="w">   </span>└──<span class="w"> </span>write_template.py
+<span class="w">    </span>└──<span class="w"> </span>run/
+<span class="w">        </span>└──<span class="w"> </span>gen_py_module_run.py
+
+<span class="w">    </span><span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">15</span><span class="w"> </span>files
 </pre></div>
 </div>
 </section>
 <section id="copyright-and-licence">
 <h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this heading">¶</a></h1>
-<p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
-<p>Copyright (C) 2017 by <a class="reference external" href="https://vroncevic.github.io/gen_py_module">vroncevic.github.io/gen_py_module</a></p>
+<p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="license: gpl v3" src="https://img.shields.io/badge/license-gplv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/apache-2.0"><img alt="license: apache 2.0" src="https://img.shields.io/badge/license-apache%202.0-blue.svg" /></a></p>
+<p>Copyright (C) 2017 - 2024 by <a class="reference external" href="https://vroncevic.github.io/gen_py_module">vroncevic.github.io/gen_py_module</a></p>
 <p><strong>gen_py_module</strong> is free software; you can redistribute it and/or modify
-it under the same terms as Python itself, either Python version 2.x/3.x or,
+it under the same terms as Python itself, either Python version 3.x or,
 at your option, any later version of Python 3 you may have available.</p>
 <p>Lets help and support PSF.</p>
-<p><a class="reference external" href="https://www.python.org/psf/"><img alt="Python Software Foundation" src="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/psf-logo-alpha.png" /></a></p>
-<p><a class="reference external" href="https://psfmember.org/index.php?q=civicrm/contribute/transact&amp;reset=1&amp;id=2"><img alt="Donate" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></p>
+<p><a class="reference external" href="https://www.python.org/psf/"><img alt="python software foundation" src="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/psf-logo-alpha.png" /></a></p>
+<p><a class="reference external" href="https://www.python.org/psf/donations/"><img alt="donate" src="https://www.paypalobjects.com/en_us/i/btn/btn_donatecc_lg.gif" /></a></p>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
@@ -168,7 +169,6 @@ at your option, any later version of Python 3 you may have available.</p>
 <li><a class="reference internal" href="#">Generate Python Module</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-<li><a class="reference internal" href="#generation-flow-of-py-module">Generation flow of py module</a></li>
 <li><a class="reference internal" href="#tool-structure">Tool structure</a></li>
 <li><a class="reference internal" href="#copyright-and-licence">Copyright and licence</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -208,6 +208,9 @@ at your option, any later version of Python 3 you may have available.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="modules.html" title="gen_py_module"
              >next</a> |</li>
         <li class="nav-item nav-item-0"><a href="#">gen_py_module https://github.com/vroncevic/gen_py_module/releases documentation</a> &#187;</li>
@@ -215,7 +218,7 @@ at your option, any later version of Python 3 you may have available.</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2017, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
