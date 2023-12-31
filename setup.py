@@ -29,7 +29,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = '(C) 2024, https://vroncevic.github.io/gen_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.5.3'
+__version__ = '1.5.4'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -61,7 +61,7 @@ APPROVED_LICENSES: List[str] = [
 PYP_CLASSIFIERS: List[str] = SUPPORTED_PY_VERSIONS + APPROVED_LICENSES
 setup(
     name='gen_py_module',
-    version='1.5.3',
+    version='1.5.4',
     description='Generating PY module',
     author='Vladimir Roncevic',
     author_email='elektron.ronca@gmail.com',
@@ -90,7 +90,7 @@ setup(
     },
     data_files=[(
         '/usr/local/bin/', [
-            f'{TOOL_DIR}run/gen_autoconf_run.py'
+            f'{TOOL_DIR}run/gen_py_module_run.py'
         ]
     )]
 )
