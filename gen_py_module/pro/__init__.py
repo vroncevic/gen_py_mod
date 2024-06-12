@@ -42,7 +42,7 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.5.4'
+__version__ = '1.5.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -152,12 +152,12 @@ class GenModule(FileCheck, ProConfig, ProName):
                 'generate', pro_type, 'form', pro_name
             ]
         )
-        template_content: Dict[str, str] | None = None
-        if bool(self._reader):
-            template_content = self._reader.read(
+        if bool(self._reader) and bool(self.config):
+            template_content: Dict[str, str] = self._reader.read(
                 self.config, pro_name, pro_type, verbose
             )
-        if all([bool(template_content), bool(self._writer)]):
-            if self._writer.write(template_content, pro_name, verbose):
-                status = True
+            if bool(template_content) and bool(self._writer):
+                status = self._writer.write(
+                    template_content, pro_name, verbose
+                )
         return status

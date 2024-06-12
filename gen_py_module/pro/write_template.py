@@ -36,10 +36,10 @@ except ImportError as ats_error_message:
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/gen_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.5.4'
+__version__ = '1.5.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -105,7 +105,7 @@ class WriteTemplate(FileCheck):
             raise ATSValueError('missing model name')
         all_stat: List[bool] = []
         num_of_modules: int = len(template_content)
-        module_pro_dir = f'{getcwd()}/{pro_name}/'
+        module_pro_dir: str = f'{getcwd()}/{pro_name}/'
         mkdir(module_pro_dir)
         for module_name, module_content in template_content.items():
             module_path: str = f'{module_pro_dir}{module_name}'

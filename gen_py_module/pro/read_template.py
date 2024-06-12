@@ -34,10 +34,10 @@ except ImportError as ats_error_message:
     sys.exit(f'\n{__file__}\n{ats_error_message}\n')
 
 __author__ = 'Vladimir Roncevic'
-__copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
+__copyright__ = '(C) 2024, https://vroncevic.github.io/gen_py_module'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.5.4'
+__version__ = '1.5.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
@@ -58,8 +58,8 @@ class ReadTemplate(FileCheck):
                 | read - Reads a template.
     '''
 
-    _GEN_VERBOSE = 'GEN_PY_MODULE::PRO::READ_TEMPLATE'
-    _TEMPLATE_DIR = '/../conf/template/'
+    _GEN_VERBOSE: str = 'GEN_PY_MODULE::PRO::READ_TEMPLATE'
+    _TEMPLATE_DIR: str = '/../conf/template/'
 
     def __init__(self, verbose: bool = False) -> None:
         '''
@@ -82,11 +82,11 @@ class ReadTemplate(FileCheck):
         '''
             Reads a template.
 
-            :param config: LKM configuration
+            :param config: Module configuration
             :type config: <Dict[Any, Any]>
-            :param pro_name: LKM name | None
+            :param pro_name: Module name | None
             :type pro_name: <str> | <NoneType>
-            :param pro_type: LKM type | None
+            :param pro_type: Module type | None
             :type pro_type: <str> | <NoneType>
             :param verbose: Enable/Disable verbose option
             :type verbose: <bool>
@@ -111,9 +111,8 @@ class ReadTemplate(FileCheck):
             raise ATSValueError('missing project type')
         current_dir: str = dirname(realpath(__file__))
         pro_structure: str = f'{current_dir}{self._TEMPLATE_DIR}'
-        template_dir = f'{pro_structure}/'
+        template_dir: str = f'{pro_structure}/'
         template_content: Dict[str, str] = {}
-        templates: List[str] = []
         index: int = -1
         if pro_type in config['modules'][0]:
             index = 0
@@ -127,13 +126,13 @@ class ReadTemplate(FileCheck):
             index = 4
         else:
             return template_content
-        modules = config['modules'][index][pro_type]
-        templates = config['templates'][index][pro_type]
+        modules: List[str] = config['modules'][index][pro_type]
+        templates: List[str] = config['templates'][index][pro_type]
         for module, template in zip(modules, templates):
             template_file: str = f'{template_dir}{template}'
             with open(template_file, 'r', encoding='utf-8') as module_file:
                 if 'class.py' == module:
-                    module = f'{pro_name}.py'
+                    module: str = f'{pro_name}.py'
                 if 'abstract_base.py' == module:
                     module = f'{pro_name}_base.py'
                 if 'abstract_abc.py' == module:

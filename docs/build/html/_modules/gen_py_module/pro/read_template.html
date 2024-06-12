@@ -1,20 +1,16 @@
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gen_py_module.pro.read_template &#8212; gen_py_module https://github.com/vroncevic/gen_py_module/releases documentation</title>
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=514cf933" />
     
-    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-    <script src="../../../_static/jquery.js"></script>
-    <script src="../../../_static/underscore.js"></script>
-    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../../_static/doctools.js"></script>
-    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/documentation_options.js?v=4fc10345"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -78,16 +74,18 @@
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="si">{</span><span class="vm">__file__</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">ats_error_message</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
-<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;Copyright 2017, https://vroncevic.github.io/gen_form_model&#39;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s1">&#39;(C) 2024, https://vroncevic.github.io/gen_py_module&#39;</span>
 <span class="n">__credits__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Vladimir Roncevic&#39;</span><span class="p">,</span> <span class="s1">&#39;Python Software Foundation&#39;</span><span class="p">]</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE&#39;</span>
-<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.4&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.5.5&#39;</span>
 <span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Vladimir Roncevic&#39;</span>
 <span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;elektron.ronca@gmail.com&#39;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Updated&#39;</span>
 
 
-<div class="viewcode-block" id="ReadTemplate"><a class="viewcode-back" href="../../../gen_py_module.pro.read_template.html#gen_py_module.pro.read_template.ReadTemplate">[docs]</a><span class="k">class</span> <span class="nc">ReadTemplate</span><span class="p">(</span><span class="n">FileCheck</span><span class="p">):</span>
+<div class="viewcode-block" id="ReadTemplate">
+<a class="viewcode-back" href="../../../gen_py_module.pro.read_template.html#gen_py_module.pro.read_template.ReadTemplate">[docs]</a>
+<span class="k">class</span> <span class="nc">ReadTemplate</span><span class="p">(</span><span class="n">FileCheck</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Defines class ReadTemplate with attribute(s) and method(s).</span>
 <span class="sd">        Creates an API for reading a PY MODULE template.</span>
@@ -102,8 +100,8 @@
 <span class="sd">                | read - Reads a template.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="n">_GEN_VERBOSE</span> <span class="o">=</span> <span class="s1">&#39;GEN_PY_MODULE::PRO::READ_TEMPLATE&#39;</span>
-    <span class="n">_TEMPLATE_DIR</span> <span class="o">=</span> <span class="s1">&#39;/../conf/template/&#39;</span>
+    <span class="n">_GEN_VERBOSE</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;GEN_PY_MODULE::PRO::READ_TEMPLATE&#39;</span>
+    <span class="n">_TEMPLATE_DIR</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/../conf/template/&#39;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
@@ -116,7 +114,9 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">verbose</span><span class="p">)</span>
         <span class="n">verbose_message</span><span class="p">(</span><span class="n">verbose</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_GEN_VERBOSE</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1"> init reader&#39;</span><span class="p">])</span>
 
-<div class="viewcode-block" id="ReadTemplate.read"><a class="viewcode-back" href="../../../gen_py_module.pro.read_template.html#gen_py_module.pro.read_template.ReadTemplate.read">[docs]</a>    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span>
+<div class="viewcode-block" id="ReadTemplate.read">
+<a class="viewcode-back" href="../../../gen_py_module.pro.read_template.html#gen_py_module.pro.read_template.ReadTemplate.read">[docs]</a>
+    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">pro_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
@@ -126,11 +126,11 @@
 <span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">            Reads a template.</span>
 
-<span class="sd">            :param config: LKM configuration</span>
+<span class="sd">            :param config: Module configuration</span>
 <span class="sd">            :type config: &lt;Dict[Any, Any]&gt;</span>
-<span class="sd">            :param pro_name: LKM name | None</span>
+<span class="sd">            :param pro_name: Module name | None</span>
 <span class="sd">            :type pro_name: &lt;str&gt; | &lt;NoneType&gt;</span>
-<span class="sd">            :param pro_type: LKM type | None</span>
+<span class="sd">            :param pro_type: Module type | None</span>
 <span class="sd">            :type pro_type: &lt;str&gt; | &lt;NoneType&gt;</span>
 <span class="sd">            :param verbose: Enable/Disable verbose option</span>
 <span class="sd">            :type verbose: &lt;bool&gt;</span>
@@ -155,9 +155,8 @@
             <span class="k">raise</span> <span class="n">ATSValueError</span><span class="p">(</span><span class="s1">&#39;missing project type&#39;</span><span class="p">)</span>
         <span class="n">current_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dirname</span><span class="p">(</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
         <span class="n">pro_structure</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">current_dir</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">_TEMPLATE_DIR</span><span class="si">}</span><span class="s1">&#39;</span>
-        <span class="n">template_dir</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pro_structure</span><span class="si">}</span><span class="s1">/&#39;</span>
+        <span class="n">template_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pro_structure</span><span class="si">}</span><span class="s1">/&#39;</span>
         <span class="n">template_content</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">templates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
         <span class="k">if</span> <span class="n">pro_type</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;modules&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
             <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
@@ -171,13 +170,13 @@
             <span class="n">index</span> <span class="o">=</span> <span class="mi">4</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">template_content</span>
-        <span class="n">modules</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;modules&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="n">pro_type</span><span class="p">]</span>
-        <span class="n">templates</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="n">pro_type</span><span class="p">]</span>
+        <span class="n">modules</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;modules&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="n">pro_type</span><span class="p">]</span>
+        <span class="n">templates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;templates&#39;</span><span class="p">][</span><span class="n">index</span><span class="p">][</span><span class="n">pro_type</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">module</span><span class="p">,</span> <span class="n">template</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">modules</span><span class="p">,</span> <span class="n">templates</span><span class="p">):</span>
             <span class="n">template_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">template_dir</span><span class="si">}{</span><span class="n">template</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">module_file</span><span class="p">:</span>
                 <span class="k">if</span> <span class="s1">&#39;class.py&#39;</span> <span class="o">==</span> <span class="n">module</span><span class="p">:</span>
-                    <span class="n">module</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pro_name</span><span class="si">}</span><span class="s1">.py&#39;</span>
+                    <span class="n">module</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pro_name</span><span class="si">}</span><span class="s1">.py&#39;</span>
                 <span class="k">if</span> <span class="s1">&#39;abstract_base.py&#39;</span> <span class="o">==</span> <span class="n">module</span><span class="p">:</span>
                     <span class="n">module</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">pro_name</span><span class="si">}</span><span class="s1">_base.py&#39;</span>
                 <span class="k">if</span> <span class="s1">&#39;abstract_abc.py&#39;</span> <span class="o">==</span> <span class="n">module</span><span class="p">:</span>
@@ -186,7 +185,9 @@
         <span class="n">verbose_message</span><span class="p">(</span>
             <span class="n">verbose</span><span class="p">,</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_GEN_VERBOSE</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">template_content</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">template_content</span></div></div>
+        <span class="k">return</span> <span class="n">template_content</span></div>
+</div>
+
 </pre></div>
 
             <div class="clearer"></div>
@@ -226,8 +227,8 @@
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    &#169; Copyright 2024, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

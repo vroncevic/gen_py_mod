@@ -1,6 +1,6 @@
-<img align="right" src="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/gen_py_module_logo.png" width="25%">
-
 # Generate Python Module
+
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/gen_py_module/dev/docs/gen_py_module_logo.png" width="25%">
 
 **gen_py_module** is tool for generation PY Module.
 

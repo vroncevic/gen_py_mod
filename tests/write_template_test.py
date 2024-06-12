@@ -90,7 +90,9 @@ class WriteTemplateTestCase(TestCase):
         '''Test write templates None'''
         template_write = WriteTemplate()
         with self.assertRaises(ATSTypeError):
-            self.assertFalse(template_write.write(None, 'none_simple'))
+            self.assertFalse(
+                template_write.write(None, 'none_simple')  # type: ignore
+            )
 
     def test_write_name_empty(self) -> None:
         '''Test write name empty'''
