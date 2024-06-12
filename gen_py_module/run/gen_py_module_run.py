@@ -33,11 +33,11 @@ __author__ = 'Vladimir Roncevic'
 __copyright__ = 'Copyright 2017, https://vroncevic.github.io/gen_form_model'
 __credits__: List[str] = ['Vladimir Roncevic', 'Python Software Foundation']
 __license__ = 'https://github.com/vroncevic/gen_py_module/blob/dev/LICENSE'
-__version__ = '1.5.4'
+__version__ = '1.5.5'
 __maintainer__ = 'Vladimir Roncevic'
 __email__ = 'elektron.ronca@gmail.com'
 __status__ = 'Updated'
 
 if __name__ == '__main__':
-    TOOL = GenPyModule(verbose=False)
+    TOOL: GenPyModule = GenPyModule(verbose=False)
     TOOL.process(verbose=False)

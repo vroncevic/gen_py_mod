@@ -90,7 +90,9 @@ class ReadTemplateTestCase(TestCase):
         template_read = ReadTemplate()
         with self.assertRaises(ATSTypeError):
             self.assertFalse(
-                bool(template_read.read(None, 'simple_read', 'class'))
+                bool(template_read.read(
+                    None, 'simple_read', 'class'  # type: ignore
+                ))
             )
 
     def test_read_template(self) -> None:
