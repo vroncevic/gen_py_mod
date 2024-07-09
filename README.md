@@ -109,29 +109,39 @@ Generator structure
 
 ```bash
     gen_py_module/
-        ├── conf/
-        │   ├── gen_py_module.cfg
-        │   ├── gen_py_module.logo
-        │   ├── gen_py_module_util.cfg
-        │   ├── project.yaml
-        │   └── template/
-        │       ├── abstract_abc_class.template
-        │       ├── abstract_base_class.template
-        │       ├── class.template
-        │       ├── empty.template
-        │       └── main.template
-        ├── __init__.py
-        ├── log/
-        │   └── gen_py_module.log
-        ├── pro/
-        │   ├── __init__.py
-        │   ├── read_template.py
-        │   └── write_template.py
-        └── run/
-            └── gen_py_module_run.py
-        
+          ├── conf/
+          │   ├── gen_py_module.cfg
+          │   ├── gen_py_module.logo
+          │   ├── gen_py_module_util.cfg
+          │   ├── project.yaml
+          │   └── template/
+          │       ├── abstract_abc_class.template
+          │       ├── abstract_base_class.template
+          │       ├── class.template
+          │       ├── empty.template
+          │       └── main.template
+          ├── __init__.py
+          ├── log/
+          │   └── gen_py_module.log
+          ├── pro/
+          │   ├── __init__.py
+          │   ├── read_template.py
+          │   └── write_template.py
+          └── run/
+              └── gen_py_module_run.py
+
         6 directories, 15 files
 ```
+
+### Code coverage
+
+| Name | Stmts | Miss | Cover |
+|------|-------|------|-------|
+| `gen_py_module/__init__.py` | 75 | 14 | 81% |
+| `gen_py_module/pro/__init__.py` | 62 | 2 | 97% |
+| `gen_py_module/pro/read_template.py` | 66 | 13 | 80% |
+| `gen_py_module/pro/write_template.py` | 52 | 3 | 94% |
+| **Total** | 255 | 32 | 87% |
 
 ### Docs
 
