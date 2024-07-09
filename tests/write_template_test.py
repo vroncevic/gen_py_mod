@@ -23,7 +23,7 @@ Execute
 '''
 
 import sys
-from typing import List, Dict
+from typing import List, Dict, Optional
 from os.path import dirname, realpath
 from unittest import TestCase, main
 
@@ -101,7 +101,7 @@ class WriteTemplateTestCase(TestCase):
         current_dir: str = dirname(realpath(__file__))
         pro: str = '../gen_py_module/conf/project.yaml'
         pro_structure: str = f'{current_dir}/{pro}'
-        yml2obj: Yaml2Object | None = Yaml2Object(pro_structure)
+        yml2obj: Optional[Yaml2Object] = Yaml2Object(pro_structure)
         content: Dict[str, str] = template_read.read(
             yml2obj.read_configuration(), 'simple_write', 'class'
         )
@@ -115,7 +115,7 @@ class WriteTemplateTestCase(TestCase):
         current_dir: str = dirname(realpath(__file__))
         pro: str = '../gen_py_module/conf/project.yaml'
         pro_structure: str = f'{current_dir}/{pro}'
-        yml2obj: Yaml2Object | None = Yaml2Object(pro_structure)
+        yml2obj: Optional[Yaml2Object] = Yaml2Object(pro_structure)
         content: Dict[str, str] = template_read.read(
             yml2obj.read_configuration(), 'simple_write', 'class'
         )
@@ -128,7 +128,7 @@ class WriteTemplateTestCase(TestCase):
         current_dir: str = dirname(realpath(__file__))
         pro: str = '../gen_py_module/conf/project.yaml'
         pro_structure: str = f'{current_dir}/{pro}'
-        yml2obj: Yaml2Object | None = Yaml2Object(pro_structure)
+        yml2obj: Optional[Yaml2Object] = Yaml2Object(pro_structure)
         content: Dict[str, str] = template_read.read(
             yml2obj.read_configuration(), 'simple_write', 'class'
         )
